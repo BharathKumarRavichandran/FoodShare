@@ -58,13 +58,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
   	<link rel="stylesheet" type="text/css" href="css/sidenav.css">
   	<link rel="stylesheet" type="text/css" href="css/modal.css">
   	<link rel="stylesheet" type="text/css" href="css/map.css">
-	<style type="text/css">
-#map{	
-	background-color: black;
-	height: 200px;
-	width: auto;
-}
-	</style>
+  	
 </head>
 
 <body>
