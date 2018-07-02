@@ -1,0 +1,42 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Sofia';
+    background-color: #e9e9e9;
+}
+
+.title{
+    text-align: center;
+    font-family: 'Sofia';
+    letter-spacing: 0.2em;
+    font-size: 4em;
+    padding: 5px;
+}
+
+.tagline{
+    text-align: center;
+    font-family: 'Sofia';
+    letter-spacing: 0.2em;
+    font-size: 2em;
+    padding: 5px;
+    margin-bottom: 2%;
+}
+
+.text{
+	font-family: 'Sofia';
+	font-size: 1.2em;
+	margin-left: 42vw;
+}
+
+.buttonsIn{
+    margin-top: 1%;
+    border-radius: 3px;
+    font-family: 'Sofia';
+    letter-spacing: 0.3em;
+    font-size: 1.1em;
+    min-width: 7vw;
+}
+
+.regb{
+	margin-left: 1vw;
+}

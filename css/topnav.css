@@ -1,0 +1,58 @@
+.topnav{
+	overflow: hidden;
+	background-color: #e9e9e9;
+	box-shadow: 0 1px 2px 0 rgba(0,0,0,.45);
+}
+
+.topnav a{
+	float: left;
+	display: block;
+	color: black;
+	text-align: center;
+	padding: 15px 36px;
+	text-decoration: none;
+	font-size: 1.5em;
+}
+
+.title{
+	float: none;
+	margin-left: 10vw;
+	text-align: center;
+	font-family: 'Trebuchet MS';
+	letter-spacing: 0.4em;
+	font-size: 1.5em;
+	padding: 6px;
+	margin-right: 3vw;
+}
+
+.title:hover{
+	cursor: pointer;
+}
+
+.topnav a.active{
+	background-color: #c9c9c9;
+}
+
+.topnav a.options:hover{
+	background-color: #645045;
+	color: white;
+}
+
+.sticky {
+	z-index: 1;
+	position: fixed;
+	top: 0;
+	width: 100%
+}
+
+.sticky + .content {
+		padding-top: 60px;
+}
+
+a:hover{
+	cursor: pointer;
+}
+
+.active{
+    background-color: #c9c9c9;
+}
