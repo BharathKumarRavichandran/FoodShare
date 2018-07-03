@@ -1,0 +1,25 @@
+body{
+	background-image: url("../assets/chatbg.jpg");
+}
+
+#chatRegion{
+	border-radius: 30px;
+	width: 80%;
+	margin-top: 50px;
+	margin-left: 330px;
+	padding: 0;
+	overflow-y: scroll; 
+	overflow: auto;
+}
+
+.chatInput{
+	margin-left: 270px;
+	height: 200px;
+	box-shadow: 0 1px 2px 0 rgba(0,0,0,.35);
+	position : absolute;
+    bottom : 0;
+    height : 10vh;
+    width: 80%;
+    margin-bottom: 5px;
+    font-size: 40px;
+}
