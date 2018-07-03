@@ -28,6 +28,8 @@ $_SESSION['message']="";
   	<link rel="stylesheet" type="text/css" href="css/home.css">
   	<link rel="stylesheet" type="text/css" href="css/topnav.css">
   	<link rel="stylesheet" type="text/css" href="css/sidenav.css">
+  	<link rel="stylesheet" type="text/css" href="css/refineListingModal.css">
+  	<link rel="stylesheet" type="text/css" href="css/map.css">
 </head>
 
 <body>
@@ -35,12 +37,41 @@ $_SESSION['message']="";
 		<a class="title" onclick="home()">FoodShare</a>
 		<a class="active options" href="#home" onclick="home()">Home</a>
 	  	<a class="options" onclick="profile()">Profile</a>
+	  	<a class="options" onclick="messages()">Messages</a>
 	</div>	
 	<div class="sidenav" id="sidenav">
-		<a id="activityId" class="sidenavlinks active" onclick="">Browse Listings</a>
+		<a id="browseId" class="sidenavlinks active" onclick="browseListings()">Browse Listings</a>
+		<a id="refineId" class="sidenavlinks" onclick="openRefineListingModal()">Refine Listings</a>
 		<a class="sidenavlinks" onclick="logout();">Logout</a>
 	</div>
-	<div id="activityRegion" class="main" style="margin-top: 20vh;"></div>
+	<div class="modal" id="modalId"> 
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2 style="text-align: center; font-size: 1.8em; margin-left: 25%; padding: 5px;">Refine results by:</h2>
+				<span class="close" id="modalCloseId">&times;</span>
+			</div>
+			<div class="modal-body">
+				<div><span>Type : </span>
+					<select id="modalSelectId1">
+						<option>Offering</option>
+						<option>Wanted</option>
+					</select>
+				</div>
+				<input id="pac-input" class="controls" type="text" name="location" placeholder="Locate by place"/>
+				<div id="map"></div>
+				<div><span>Show results within : </span>
+					<select id="modalSelectId2">
+						<option>&lt;10KM</option>
+						<option>10KM - 30KM</option>
+						<option>30KM - 100KM</option>
+						<option>All Listings</option>
+					</select>
+				</div>
+				<div><input id="submitInputId" class="inputClass" type="submit" name="refineList" value="Refine" onclick="refineListings();"></div>
+			</div>
+		</div>
+	</div>
+	<div id="listingRegion" class="main" style="margin-top: 20vh;"></div>
 
 <script type="text/javascript">
 
@@ -61,8 +92,26 @@ $_SESSION['message']="";
 		 }
 	}
 
-</script>	
+	var modal = document.getElementById('modalId');
+	var close = document.getElementById("modalCloseId");
+
+	close.onclick = function() {
+	    modal.style.display = "none";  
+	}
+
+	window.onclick = function(event) {
+	    if (event.target == modal) {
+	        modal.style.display = "none";
+	    }
+	}	
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLayRaJZWWbmSToJZd9UHgwp5QNVme5gw&libraries=places&callback=initAutocomplete" async defer></script>
+<script src="js/config.js"></script>
+<script src="js/map.js"></script>
 <script src="js/functions.js"></script>
 <script src="js/home.js"></script>
+<script src="js/generic.js"></script>
+<script src="js/createCard.js"></script>
 </body>
 </html>

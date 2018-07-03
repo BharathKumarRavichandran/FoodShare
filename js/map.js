@@ -2,6 +2,10 @@ var map;
 var infoWindow;
 var markerLat;
 var markerLng;
+var saveLatitude;
+var saveLongitude;
+var saveAddress;
+
 
 var markers = new Array();
 
@@ -86,6 +90,60 @@ function initAutocomplete() {
 
 function saveLocation(){
 
- console.log( "Latitude: "+markerLat+" "+", longitude: "+markerLng); 
+  saveAddress = document.getElementById("locationInputId").value;
+  
+  if(saveAddress!=""){
+    address_to_coordinates(saveAddress);
+  }
+  else{
+    saveLatitude = markerLat;
+    saveLongitude = markerLng;
+    saveAddress = coordinates_to_address(markerLat,markerLng);
+  }
 
+  console.log("Latitude: "+saveLatitude+" "+", longitude: "+saveLongitude+" Address : "+saveAddress); 
+
+}
+
+function address_to_coordinates(address){
+
+  var geocoder = new google.maps.Geocoder();
+
+  geocoder.geocode( { 'address': address}, function(results, status) {
+
+  if (status == google.maps.GeocoderStatus.OK) {
+      saveLatitude = results[0].geometry.location.lat();
+      saveLongitude = results[0].geometry.location.lng();
+      console.log(saveLatitude+" "+saveLongitude);
+      } 
+  });
+
+}
+
+function coordinates_to_address(lat,lng){
+
+    var latlng = new google.maps.LatLng(lat,lng);
+    var geocoder = new google.maps.Geocoder();
+
+    geocoder.geocode({'latLng': latlng}, function(results, status) {
+        if(status == google.maps.GeocoderStatus.OK) {
+            if(results[0]) {
+                var address = (results[0].formatted_address);
+                saveAddress = address;
+                console.log(saveAddress);
+                return address;
+            }
+            else{
+                alert('No results found');
+            }
+        }
+        else{
+            var error = {
+                'ZERO_RESULTS': 'Kunde inte hitta adress'
+            }
+
+            // alert('Geocoder failed due to: ' + status);
+            console.log(error[status]);
+        }
+    });
 }
