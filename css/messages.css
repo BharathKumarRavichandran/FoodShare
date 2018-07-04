@@ -20,6 +20,60 @@ body{
     bottom : 0;
     height : 10vh;
     width: 80%;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
     font-size: 40px;
+}
+
+#userChatSelect{
+	margin-top: 30px;
+}
+
+.container-chatlink{
+	border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+	height: 50px;
+	border-width: 1px !important;
+	margin: 0px; 
+}
+
+.container-chatlink::after{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.userchatlinks{
+	text-align: center;
+}
+
+.userchatlinks:hover{
+	cursor: pointer;
+}
+
+.img-avatar{
+	float: left;
+    max-width: 80px;
+    border-radius: 50%;
+	width: 30px; 
+	height: 30px; 
+	vertical-align: center;
+	margin-left: 5px;
+	margin-top: -1px;
+}
+
+.no-userchats{
+	text-align: center;
+	margin-top: 50px;
+}
+
+.no-chatmessages{
+	text-align: center;
+	margin-top: 20vh;
+	font-size: 50px;
+}
+
+.active{
+    background-color: #c9c9c9;
 }
