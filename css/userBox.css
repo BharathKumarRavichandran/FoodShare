@@ -1,0 +1,36 @@
+.container{
+	width: 43vw;
+	height: auto;
+}
+
+.card{
+	padding: 0px;
+	height: auto;
+}
+
+.liClass{
+	margin-top: 20px;
+	margin-bottom: 20px;
+ 	overflow: auto; 
+}
+
+.userBoxClass{
+	padding: 20px;
+	width: 40%;
+	margin-left: 26%;
+	margin-bottom: 25px;
+}
+
+.userNameDisp{
+	font-size: 25px;
+}
+
+.userBtn{
+	float: right;
+	margin: 5px;
+}
+
+.btn-brown{
+	background: #645045;
+	color: white;
+}

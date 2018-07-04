@@ -33,22 +33,6 @@ li{
 	margin-left: 35vw; 
 }
 
-.userBoxClass{
-	padding: 20px;
-	width: 40%;
-	margin-left: 26%;
-	margin-bottom: 25px;
-}
-
-.userNameDisp{
-	font-size: 25px;
-}
-
-.userBtn{
-	float: right;
-	margin: 5px;
-}
-
 .btn-brown{
 	background: #645045;
 	color: white;
