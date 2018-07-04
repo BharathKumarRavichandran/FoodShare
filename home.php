@@ -30,6 +30,7 @@ $_SESSION['message']="";
   	<link rel="stylesheet" type="text/css" href="css/sidenav.css">
   	<link rel="stylesheet" type="text/css" href="css/refineListingModal.css">
   	<link rel="stylesheet" type="text/css" href="css/map.css">
+  	<link rel="stylesheet" type="text/css" href="css/searchContainer.css">
 </head>
 
 <body>
@@ -38,6 +39,10 @@ $_SESSION['message']="";
 		<a class="active options" href="#home" onclick="home()">Home</a>
 	  	<a class="options" onclick="profile()">Profile</a>
 	  	<a class="options" onclick="messages()">Messages</a>
+	  	<span class="search-container">
+	      	<input id="searchValue" type="text" placeholder="Search User" name="search" />
+	      	<button id="searchButtonId" onclick="searchUser()"><i class="fa fa-search"></i></button>	
+	  	</span>
 	</div>	
 	<div class="sidenav" id="sidenav">
 		<a id="browseId" class="sidenavlinks active" onclick="browseListings()">Browse Listings</a>
@@ -113,5 +118,7 @@ $_SESSION['message']="";
 <script src="js/home.js"></script>
 <script src="js/generic.js"></script>
 <script src="js/createCard.js"></script>
+<script src="js/follow.js"></script>
+<script src="js/viewProfileClick.js"></script>
 </body>
 </html>
