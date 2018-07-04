@@ -23,7 +23,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 
     if(!((isset($data->success))AND($data->success==true))){
         $_SESSION['message'] = 'Captcha Failed!';
-        //$allow=0;
+        $allow=0;
     }
 
     $username = $conn->real_escape_string($_POST['username']);
@@ -147,6 +147,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     }
 
 </script>
-<script src="register.js"></script>       
+<script src="js/register.js"></script>       
 </body>
 </html>
