@@ -65,7 +65,6 @@ function userChatInit(){
     		if(document.getElementById("userChat"+0)){
     			document.getElementById("userChat"+0).click();
     			document.getElementById("userChat"+0).classList.add("active");
-    			console.log(document.getElementById("userChat"+0).classList.contains("active"));
     			username2 = userData[0].Username;
     		}
     		else{
@@ -255,25 +254,69 @@ function userChatLinkClick(y){
 	  	xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	var chatData;
-	var purpose = "retrieveMessages";
+	var purpose = "retrieveSeenMessages";
 	var params = "username2="+username2+"&purpose="+purpose;
 	var url = "retrieveMessages.php";
 	xmlhttp.onreadystatechange = function(){
 		if(this.readyState==4&&this.status==200){
 			chatData = JSON.parse(this.responseText);
-			var currentUser = chatData[0].CurrentUser.trim();
-			for(var t=0;t<chatData.length;t++){
-				if(currentUser==chatData[t].Username1.trim()){
-					createSelfMessageBox(chatData[t].Message,chatData[t].MessageTime);
+			if(chatData.length>0){
+				var currentUser = chatData[0].CurrentUser.trim();
+				for(var t=0;t<chatData.length;t++){
+					if(currentUser==chatData[t].Username1.trim()){
+						createSelfMessageBox(chatData[t].Message,chatData[t].MessageTime);
+					}
+					else{
+						createOppMessageBox(chatData[t].Message,chatData[t].MessageTime);
+					}
 				}
-				else{
-					createOppMessageBox(chatData[t].Message,chatData[t].MessageTime);
-				}
+				chatboxScrollCheck();
 			}
-			if(chatData.length<1){
+			else{
 				noChatMessagesDisplay();
 			}
-			chatboxScrollCheck();
+		}
+	};
+	xmlhttp.open("POST",url,true);
+	xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+	xmlhttp.send(params);
+
+}
+
+function loadUnseenMessages(){
+
+	if(document.getElementById("noChatMessagesId")){
+		while(chatRegion.firstChild){
+			chatRegion.removeChild(chatRegion.firstChild);
+		}
+	}
+
+    var xmlhttp;
+	if (window.XMLHttpRequest){
+	  		xmlhttp = new XMLHttpRequest();
+	} 
+	 else{
+	  	xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	var chatData;
+	var purpose = "retrieveUnseenMessages";
+	var params = "username2="+username2+"&purpose="+purpose;
+	var url = "retrieveMessages.php";
+	xmlhttp.onreadystatechange = function(){
+		if(this.readyState==4&&this.status==200){
+			chatData = JSON.parse(this.responseText);
+			if(chatData.length>0){
+				var currentUser = chatData[0].CurrentUser.trim();
+				for(var t=0;t<chatData.length;t++){
+					if(currentUser==chatData[t].Username1.trim()){
+						//createSelfMessageBox(chatData[t].Message,chatData[t].MessageTime);
+					}
+					else{
+						createOppMessageBox(chatData[t].Message,chatData[t].MessageTime);
+					}
+				}
+				chatboxScrollCheck();
+			}
 		}
 	};
 	xmlhttp.open("POST",url,true);
@@ -295,6 +338,10 @@ function noChatMessagesDisplay(){
 	var divText = document.createTextNode("No chat messages to display!");
 	div.appendChild(divText);
 	chatRegion.appendChild(div);
+	div.setAttribute("id","noChatMessagesId");
 	div.setAttribute("class","no-chatmessages");	
 }
+
 userChatInit();
+
+setInterval(loadUnseenMessages,2000);

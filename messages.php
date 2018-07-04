@@ -62,7 +62,7 @@ $_SESSION['message']="";
 
 	document.getElementById("sidenav").style.top = document.getElementById("navbar").offsetHeight+"px";
 	document.getElementById("chatRegion").style.marginLeft = document.getElementById("sidenav").width+"px";
-	document.getElementById("chatRegion").style.height = (screen.height - document.getElementById("navbar").offsetHeight - document.getElementById("chatInput").offsetHeight - parseInt(getStyle("chatRegion","margin-top"),10)-70)+"px";
+	document.getElementById("chatRegion").style.height = (screen.height - document.getElementById("navbar").offsetHeight - document.getElementById("chatInput").offsetHeight - parseInt(getStyle("chatRegion","margin-top"),10)-120)+"px";
 
 /*---- For navbar onscroll----*/
 	window.onscroll = function() {myFunction()};
