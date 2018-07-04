@@ -4,8 +4,8 @@ body{
 
 #chatRegion{
 	border-radius: 30px;
-	width: 80%;
-	margin-top: 50px;
+	width: 74%;
+	margin-top: 30px;
 	margin-left: 330px;
 	padding: 0;
 	overflow-y: scroll; 
@@ -13,14 +13,14 @@ body{
 }
 
 .chatInput{
-	margin-left: 270px;
+	margin-left: 300px;
 	height: 200px;
 	box-shadow: 0 1px 2px 0 rgba(0,0,0,.35);
 	position : absolute;
     bottom : 0;
-    height : 10vh;
-    width: 80%;
-    margin-bottom: 2px;
+    height : 9vh;
+    width: 74%;
+    margin-bottom: 4px;
     font-size: 40px;
 }
 
