@@ -81,9 +81,9 @@ if(!$stmt){
 	</div>
 	<div>
 		<div id="viewUser" class="userDispBig"><?= $viewUser ?></div>
-		<div style="text-align: center;"><button id="followBtn" class="userBtn btn btn-brown" onclick="followBtnClick(this)"><?= $followValue ?></button></div>
-		<div class="recentText">User's Recent Activity</div>
-		<div id="activityRegion"></div>
+		<div id="btnRegion" style="text-align: center;"><button id="followBtn" class="userBtn btn btn-brown" onclick="followBtnClick(this)"><?= $followValue ?></button></div>
+		<div class="recentText">User's Recent Listings</div>
+		<div id="listingRegion"></div>
 	</div>	
 <script type="text/javascript">
 
