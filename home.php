@@ -31,6 +31,7 @@ $_SESSION['message']="";
   	<link rel="stylesheet" type="text/css" href="css/refineListingModal.css">
   	<link rel="stylesheet" type="text/css" href="css/map.css">
   	<link rel="stylesheet" type="text/css" href="css/searchContainer.css">
+  	<link rel="stylesheet" type="text/css" href="css/userBox.css">
 </head>
 
 <body>
@@ -118,6 +119,7 @@ $_SESSION['message']="";
 <script src="js/home.js"></script>
 <script src="js/generic.js"></script>
 <script src="js/createCard.js"></script>
+<script src="js/createUserBox.js"></script>
 <script src="js/follow.js"></script>
 <script src="js/viewProfileClick.js"></script>
 </body>
