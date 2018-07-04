@@ -1,0 +1,51 @@
+.topnav .search-container{
+	margin-top: 1vh;
+	float: right;
+	margin-right: 10vw;
+}
+
+.topnav select{
+	min-height: 35px;
+	font-size: 1.3em;
+	padding: 2px;
+}
+
+.topnav input[type=text]{
+	padding: 6px;
+	font-size: 1.3em;
+	min-width: 20vw;
+	border: none;
+	min-height: 20px;
+}
+
+.topnav .search-container button{
+	padding: 6px 10px;
+	background: #ddd;
+	font-size: 1.3em;
+	border: none;
+	cursor: pointer;
+	min-height: 20px;
+}
+
+.topnav .search-container button:hover{
+	background: #ccc;
+}
+
+@media screen and (max-width: 600px) {
+	.topnav .search-container {
+    	float: none;
+  	}
+
+  	.topnav a, .topnav input[type=text], .topnav .search-container button {
+	    float: none;
+	    display: block;
+	    text-align: left;
+	    width: 100%;
+	    margin: 0;
+	    padding: 14px;
+  	}
+
+  	.topnav input[type=text] {
+    	border: 1px solid #ccc;  
+  	}
+}
