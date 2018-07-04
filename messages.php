@@ -39,11 +39,14 @@ $_SESSION['message']="";
 	  	<a class="options active" onclick="messages()">Messages</a>
 	</div>	
 	<div class="sidenav" id="sidenav">
-		<a class="sidenavlinks" onclick="logout();">Logout</a>
+		<span class="search-container" style="padding: 15px;">
+	      	<input id="searchUserValue" type="text" placeholder="Search User" name="search" onkeyup="searchUserChatSuggestions();" />
+	      	<button id="searchChatButtonId" onclick="searchUserChat()"><i class="fa fa-search"></i></button>	
+	  	</span>
+	  	<div id="userChatSelect"></div>
 	</div>
-	<div id="chatRegion">
-	</div>
-	<input id="chatInput" class="chatInput" type="text" name="send">
+	<div id="chatRegion"></div>
+	<input id="chatInput" class="chatInput" type="text" name="send" placeholder="Type a message">
 
 <script type="text/javascript">
 
