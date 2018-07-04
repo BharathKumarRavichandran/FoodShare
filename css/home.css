@@ -18,6 +18,12 @@ li{
 	height: auto;
 }
 
+.liClass{
+	margin-top: 20px;
+	margin-bottom: 20px;
+ 	overflow: auto; 
+}
+
 .no-listings{
 	padding: 10px;
 	font-size: 1.5em;
@@ -25,4 +31,26 @@ li{
 	text-align: center;
 	max-width: 30vw;
 	margin-left: 35vw; 
+}
+
+.userBoxClass{
+	padding: 20px;
+	width: 40%;
+	margin-left: 26%;
+	margin-bottom: 25px;
+}
+
+
+.userNameDisp{
+	font-size: 25px;
+}
+
+.userBtn{
+	float: right;
+	margin: 5px;
+}
+
+.btn-brown{
+	background: #645045;
+	color: white;
 }
