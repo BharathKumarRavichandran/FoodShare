@@ -99,3 +99,72 @@ function noListingDisplay(){
 	listingRegion.appendChild(div);
 	div.setAttribute("class","no-listings card bg-light");
 }
+
+function followDataDisplay(y){
+
+	var children = document.getElementById("sidenav").children;
+	for(t=0;t<children.length;t++){
+		if(children[t].classList.contains("active")){
+			children[t].classList.remove("active");
+		}
+	} 
+
+	y.classList.add("active");
+
+	var clickText = y.innerHTML.trim();
+
+	while(listingRegion.firstChild){
+		listingRegion.removeChild(listingRegion.firstChild);
+	} 
+
+	var xmlhttp;
+	if (window.XMLHttpRequest) {
+	  		xmlhttp = new XMLHttpRequest();
+	} 
+	 else{
+	  	xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	var url = "followData.php";
+	var params = "";
+	var userData;
+	xmlhttp.onreadystatechange = function(){
+	    if(this.readyState==4&&this.status==200){
+	    	cards=0;
+	    	userData = JSON.parse(this.responseText);
+	    	if(userData.length==0){
+	    		noUsersDisplay();
+	    	}
+	    	else{
+	    		var currentUser = userData[0].currentUser;
+	    		for(var g=0;g<userData.length;g++){
+	    			if(clickText=="Following"){
+	    				var array = userData[g].Following.split(",");
+	    				for(var d=0;d<array.length-1;d++){
+	    					createUserBox(cards,array[d],"Following");
+	    					cards++;
+	    				}		
+	    			}
+	    			else if(clickText=="Followers"){
+	    				var array = userData[g].Followers.split(",");
+	    				for(var d=0;d<array.length-1;d++){
+	    					var btnText = "Follow";
+	    					var followingArray = userData[g].Following.split(",");
+	    					for(var x=0;x<followingArray.length;x++){
+	    						if(array[d]==followingArray[x]){
+		    						btnText = "Following";
+		    					}
+	    					}
+	    					createUserBox(cards,array[d],btnText);
+	    					cards++;
+	    				}		
+	    			}
+	    		}
+	    	}
+	   	}
+	};
+	xmlhttp.open("POST",url,true);
+	xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+	xmlhttp.send(params);
+
+}
