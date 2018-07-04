@@ -31,6 +31,7 @@ function followBtnClick(y){
 	xmlhttp.onreadystatechange = function(){
 	    if(this.readyState==4&&this.status==200){
 	    	console.log(this.responseText);
+	    	messageBtnAppend();
 	    }
 	};
 	xmlhttp.open("POST",url,true);
@@ -38,3 +39,24 @@ function followBtnClick(y){
 	xmlhttp.send(params);
 
 }
+
+function messageBtnAppend(){
+
+	var isfollowing = document.getElementById("followBtn").innerHTML;
+	
+	if(isfollowing=="Following"){
+		var button = document.createElement("button");
+		var text = document.createTextNode("Message");
+
+		button.appendChild(text);
+		document.getElementById("btnRegion").appendChild(button);
+
+		button.setAttribute("id","messageBtn");
+		button.setAttribute("class","userBtn btn btn-brown");
+		button.setAttribute("onclick","messageBtnClick();");
+		button.setAttribute("style","margin-left: 8px;");
+	}
+
+}
+
+messageBtnAppend();
