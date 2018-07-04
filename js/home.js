@@ -7,6 +7,7 @@ var listingRegion = document.getElementById("listingRegion");
 var modal = document.getElementById("modalId");
 var selectId1 = document.getElementById("modalSelectId1");
 var selectId2 = document.getElementById("modalSelectId2");
+var searchValue = document.getElementById("searchValue");
 
 var xmlhttp;
 if (window.XMLHttpRequest) {
@@ -15,6 +16,12 @@ if (window.XMLHttpRequest) {
 else{
   	xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 }
+
+document.getElementById("searchValue").addEventListener("keyup",function(event){
+	if(event.keyCode==13){ //enter key
+		searchUser();
+	}
+},false);
 
 function deg2rad(x) {
    return x*Math.PI/180;
@@ -62,6 +69,112 @@ function initialise(){
 	xmlhttp.open("POST",url,true);
 	xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');
 	xmlhttp.send(params);
+}
+
+function searchUser(){
+
+	while(listingRegion.firstChild){
+		listingRegion.removeChild(listingRegion.firstChild);
+	}
+
+
+	var xmlhttp;
+	if (window.XMLHttpRequest) {
+	  		xmlhttp = new XMLHttpRequest();
+	} 
+	 else{
+	  	xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	var userSearchValue = searchValue.value;
+	var url = "getUserSearchData.php";
+	var params = "userSearchValue="+userSearchValue;
+	var userData;
+	xmlhttp.onreadystatechange = function(){
+	    if(this.readyState==4&&this.status==200){
+	    	cards=0;
+	    	userData = JSON.parse(this.responseText);
+	    	if(userData.length==0){
+	    		noUsersDisplay();
+	    	}
+	    	else{
+	    		var currentUser = userData[0].currentUser;
+	    		for(var g=0;g<userData.length;g++){
+
+	    			var btnText = "Follow";
+	    			var isfollowing = false;
+	    			if(userData[g].Username==currentUser){
+		    			btnText = "View Profile";
+		    		}
+	    			if(userData[g].Followers!="NULL"||!userData[g].Followers){
+	    				var followingArray = userData[g].Followers.split(",");
+		    			for(var x=0;x<followingArray.length-1;x++){
+		    				if(currentUser==followingArray[x]){
+		    					isfollowing = true;
+		    					btnText = "Following";
+		    				}
+		    			}
+	    			}
+	    			createUserBox(cards,userData[g].Username,btnText);
+	    			cards++;
+	    		}
+	    	}
+	   	}
+	    searchValue.value = "";
+	    searchValue.placeholder = "Search User";
+	};
+	xmlhttp.open("POST",url,true);
+	xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+	xmlhttp.send(params);
+
+}
+
+
+function createUserBox(cards,username,btnText){
+
+	var li = document.createElement("span");
+	var userSpan = document.createElement("span");
+	var btnSpan = document.createElement("span");
+	var button = document.createElement("button");
+	var button2;
+	if(btnText!="View Profile"){
+		button2 = document.createElement("button");
+	}
+
+	var userSpanText = document.createTextNode(username);
+	var buttonText = document.createTextNode(btnText);
+	var button2Text;
+	if(btnText!="View Profile"){
+		button2Text = document.createTextNode("View Profile");
+		button2.appendChild(button2Text);
+	}
+
+	userSpan.appendChild(userSpanText);
+	button.appendChild(buttonText);
+
+	li.appendChild(userSpan);
+	btnSpan.appendChild(button);
+	if(btnText!="View Profile"){
+		btnSpan.appendChild(button2);
+	}	
+	li.appendChild(btnSpan);
+	listingRegion.appendChild(li);
+
+	userSpan.setAttribute("id","username"+cards);
+	button.setAttribute("id","followBtn"+cards);
+	if(btnText!="View Profile"){
+		button2.setAttribute("id","viewProfileBtn"+cards);
+	}
+
+	li.setAttribute("class","userBoxClass liClass container card card-body bg-light");
+	li.setAttribute("style","display:inline-block");
+	userSpan.setAttribute("class","userNameDisp");
+	button.setAttribute("class","userBtn btn btn-brown");
+	button.setAttribute("onclick","followBtnClick(this)");
+	if(btnText!="View Profile"){
+		button2.setAttribute("class","userBtn btn btn-brown");
+		button2.setAttribute("onclick","viewProfileBtnClick(this)");
+	}
+
 }
 
 function browseListings(){
@@ -175,6 +288,14 @@ function refineListings(){
 function noListingDisplay(){
 	var div = document.createElement("div");
 	var divText = document.createTextNode("No Listings near you!");
+	div.appendChild(divText);
+	listingRegion.appendChild(div);
+	div.setAttribute("class","no-listings card bg-light");
+}
+
+function noUsersDisplay(){
+	var div = document.createElement("div");
+	var divText = document.createTextNode("No Users to display!");
 	div.appendChild(divText);
 	listingRegion.appendChild(div);
 	div.setAttribute("class","no-listings card bg-light");
