@@ -48,6 +48,7 @@ if(isset($_SESSION["viewUser"])){
 		<a class="sidenavlinks" onclick="">View Profile</a>
 		<a class="sidenavlinks" onclick="openNewListingModal();">Add Listing</a>
 		<a id="myListingsId" class="sidenavlinks" onclick="myListings()">My Listings</a>
+		<a id="unlistedListingsId" class="sidenavlinks" onclick="unlistedListings()">Unlisted Listings</a>
 		<a id="followingId" class="sidenavlinks" onclick="followDataDisplay(this);">Following</a>
 		<a id="followersId" class="sidenavlinks" onclick="followDataDisplay(this);">Followers</a>
 		<a class="sidenavlinks" onclick="logout();">Logout</a>
@@ -125,7 +126,6 @@ if(isset($_SESSION["viewUser"])){
 <script src="js/functions.js"></script>
 <script src="js/profile.js"></script>
 <script src="js/generic.js"></script>
-<script src="js/createCard.js"></script>
 <script src="js/createUserBox.js"></script>
 <script src="js/follow.js"></script>
 <script src="js/viewProfileClick.js"></script>
