@@ -32,6 +32,8 @@ $_SESSION['message']="";
   	<link rel="stylesheet" type="text/css" href="css/map.css">
   	<link rel="stylesheet" type="text/css" href="css/searchContainer.css">
   	<link rel="stylesheet" type="text/css" href="css/userBox.css">
+  	<link rel="stylesheet" type="text/css" href="css/listingCard.css">
+  	<link rel="stylesheet" type="text/css" href="css/usernameChips.css">
 </head>
 
 <body>

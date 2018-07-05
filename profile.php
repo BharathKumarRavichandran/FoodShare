@@ -29,6 +29,8 @@ if(!isset($_SESSION["username"])){
   	<link rel="stylesheet" type="text/css" href="css/addListingModal.css">
   	<link rel="stylesheet" type="text/css" href="css/map.css">
   	<link rel="stylesheet" type="text/css" href="css/userBox.css">
+  	<link rel="stylesheet" type="text/css" href="css/listingCard.css">
+  	<link rel="stylesheet" type="text/css" href="css/usernameChips.css">
 </head>
 
 <body>
@@ -41,7 +43,7 @@ if(!isset($_SESSION["username"])){
 	<div class="sidenav" id="sidenav">
 		<a class="sidenavlinks active" onclick="">View Profile</a>
 		<a class="sidenavlinks" onclick="openNewListingModal();">Add Listing</a>
-		<a class="sidenavlinks" onclick="myListings()">My Listings</a>
+		<a id="myListingsId" class="sidenavlinks" onclick="myListings()">My Listings</a>
 		<a id="followingId" class="sidenavlinks" onclick="followDataDisplay(this);">Following</a>
 		<a id="followersId" class="sidenavlinks" onclick="followDataDisplay(this);">Followers</a>
 		<a class="sidenavlinks" onclick="logout();">Logout</a>

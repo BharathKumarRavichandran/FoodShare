@@ -13,6 +13,10 @@ else{
   	xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 }
 
+function init(){
+	document.getElementById("myListingsId").click();
+}
+
 function openNewListingModal(){
 
 	document.getElementById("expiryDateId").value = new Date().toDateInputValue();
@@ -64,6 +68,14 @@ function myListings(){
 		listingRegion.removeChild(listingRegion.firstChild);
 	}
 
+	var children = document.getElementById("sidenav").children;
+	for(t=0;t<children.length;t++){
+		if(children[t].classList.contains("active")){
+			children[t].classList.remove("active");
+		}
+	} 
+	document.getElementById("myListingsId").classList.add("active");
+
 	var xmlhttp;
 	if (window.XMLHttpRequest){
 	  		xmlhttp = new XMLHttpRequest();
@@ -79,7 +91,7 @@ function myListings(){
 			cards = 0;
 			data = JSON.parse(this.responseText);
 			for(var u=0;u<data.length;u++){
-				createCard(cards,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime);
+				createCard(cards,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime);
 			}
 			if(!listingRegion.firstChild){
 				noListingDisplay();
@@ -168,3 +180,5 @@ function followDataDisplay(y){
 	xmlhttp.send(params);
 
 }
+
+init();

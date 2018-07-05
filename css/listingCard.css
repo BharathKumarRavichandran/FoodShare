@@ -1,0 +1,37 @@
+.listingCardLi{
+	padding: 34px 20px 20px 40px;
+	box-shadow: 0 1px 2px 0 rgba(0,0,0,.30);
+	width: 54%;
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+.listingCardLi:hover{
+	box-shadow: 0 2px 3px 0 rgba(0,0,0,.50); 
+}
+
+.cardTitle{
+	font-size: 40px;
+	font-weight: bold;
+	margin-left: -15px;
+}
+
+.cardDesc{
+	margin-top: 20px;
+	margin-bottom: 30px;
+	font-size: 25px;
+}
+
+.defSpan{
+	font-weight: bold;
+}
+
+.listing-card-icons{
+	font-size: 20px; 
+	padding: 8px;
+}
+
+.card-div{
+	margin-top: 7px;
+	margin-bottom: 7px;
+}
