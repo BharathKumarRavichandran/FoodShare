@@ -1,4 +1,4 @@
-function createCard(cards,username,type,title,desc,location,pickupTime,expiryDate,creationTime){
+function createCard(cards,id,username,type,title,desc,location,pickupTime,expiryDate,creationTime){
 
 	var li = document.createElement("li");
 	var titleDiv = document.createElement("div");
@@ -15,6 +15,7 @@ function createCard(cards,username,type,title,desc,location,pickupTime,expiryDat
 	var chipDiv = document.createElement("div");
 	var chipImg = document.createElement("img");
 	var chipSpan = document.createElement("span");
+	var idDiv = document.createElement("div");
 
 	var titleText = document.createTextNode(title);
 	var descText = document.createTextNode(desc);
@@ -25,6 +26,7 @@ function createCard(cards,username,type,title,desc,location,pickupTime,expiryDat
 	var defCTSpanText = document.createTextNode("Listed on : ");
 	var ctText = document.createTextNode(creationTime);
 	var	chipSpanText = document.createTextNode(username);
+	var idText = document.createTextNode(id);
 
 	titleDiv.appendChild(titleText);
 	descDiv.appendChild(descText);
@@ -50,8 +52,11 @@ function createCard(cards,username,type,title,desc,location,pickupTime,expiryDat
 	li.appendChild(ptDiv);
 	li.appendChild(ctDiv);
 	li.appendChild(chipDiv);
+	idDiv.appendChild(idText);
+	li.appendChild(idDiv);
 	document.getElementById("listingRegion").appendChild(li);
 
+	idDiv.setAttribute("id","idDiv"+cards);
 	chipDiv.setAttribute("id","chipDiv"+cards);
 	chipSpan.setAttribute("id","username"+cards);
 
@@ -76,5 +81,7 @@ function createCard(cards,username,type,title,desc,location,pickupTime,expiryDat
 	chipImg.setAttribute("alt","Person");
 	chipImg.setAttribute("width","96");
 	chipImg.setAttribute("height","96");
+
+	idDiv.setAttribute("style","display: none;");
 
 }
