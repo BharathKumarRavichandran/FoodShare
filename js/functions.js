@@ -39,6 +39,12 @@ function getStyle(el,styleProp){
     return y;
 }
 
+/*---------------------------------------Function to stop audio the current audio from playing----------------------------------*/
+function stopAudio(audio){
+    audio.pause();
+    audio.currentTime = 0;
+}
+
 function home(){
 	window.location = "home.php";
 }
