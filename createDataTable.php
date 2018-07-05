@@ -17,27 +17,28 @@ $conn->query($sql);
 
 $tableName = "foods";
 $sql = "CREATE TABLE IF NOT EXISTS $tableName(
-		id INT(100) NOT NULL AUTO_INCREMENT,
+		id INT NOT NULL AUTO_INCREMENT,
 		Username VARCHAR(500) NOT NULL,
 		Type VARCHAR(500) NOT NULL,
 		Title VARCHAR(500) NOT NULL,
-		Description VARCHAR(500),
+		Description VARCHAR(2000),
 		Address VARCHAR(500) NOT NULL,
 		Latitude DECIMAL(9,6) NOT NULL,
 		Longitude DECIMAL(9,6) NOT NULL,
 		PickupTime VARCHAR(500) NOT NULL,
 		ExpiryDate DATETIME,
 		CreationTime DATETIME NOT NULL,
+		Listed VARCHAR(500) DEFAULT 'yes',
 		PRIMARY KEY (id)
 		)";
 $conn->query($sql);	
 
 $tableName = "chats";
 $sql = "CREATE TABLE IF NOT EXISTS $tableName(
-		id INT(100) NOT NULL AUTO_INCREMENT,
+		id INT NOT NULL AUTO_INCREMENT,
 		Username1 VARCHAR(500) NOT NULL,
 		Username2 VARCHAR(500) NOT NULL,
-		Message VARCHAR(500) NOT NULL,
+		Message VARCHAR(4000) NOT NULL,
 		MsgTimeStamp VARCHAR(100) NOT NULL,
 		MessageTime DATETIME NOT NULL,
 		Status VARCHAR(256) DEFAULT 'unseen',
@@ -50,7 +51,7 @@ $sql = "CREATE TABLE IF NOT EXISTS $tableName(
 		id INT(100) NOT NULL AUTO_INCREMENT,
 		Username1 VARCHAR(500) NOT NULL,
 		Username2 VARCHAR(500) NOT NULL,
-		TotalMessages INT(100) NOT NULL,
+		TotalMessages INT NOT NULL,
 		PRIMARY KEY (id)
 		)";
 $conn->query($sql);	
