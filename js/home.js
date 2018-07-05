@@ -207,19 +207,26 @@ function refineListings(){
 			cards = 0;
 			data = JSON.parse(this.responseText);
 			for(var u=0;u<data.length;u++){
+				
 				var distance  = getDistanceFromLatLonInKm(markerLat,markerLng,data[u].Latitude,data[u].Longitude);
-				if(disConstraint=="<10KM"&&distance<10){
-					createCard(cards,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime);
+
+				if(type.trim() == data[u].Type.trim()){
+
+					if(disConstraint=="<10KM"&&distance<10){
+						createCard(cards,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime);
+					}
+					else if(disConstraint=="10KM - 30KM"&&(distance>=10&&distance<30)){
+						createCard(cards,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime);
+					}
+					else if(disConstraint=="30KM - 90KM"&&(distance>=30&&distance<90)){
+						createCard(cards,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime);
+					}
+					else if(disConstraint=="All Listings"){
+						createCard(cards,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime);
+					}
+
 				}
-				else if(disConstraint=="10KM - 30KM"&&(distance>=10&&distance<30)){
-					createCard(cards,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime);
-				}
-				else if(disConstraint=="30KM - 90KM"&&(distance>=30&&distance<90)){
-					createCard(cards,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime);
-				}
-				else if(disConstraint=="All Listings"){
-					createCard(cards,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime);
-				}
+			
 			}
 			if(!listingRegion.firstChild){
 				noListingDisplay();
