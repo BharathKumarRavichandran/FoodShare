@@ -5,6 +5,8 @@ var chatRegion = document.getElementById("chatRegion");
 var searchUserValue = document.getElementById("searchUserValue");
 var userChatSelect = document.getElementById("userChatSelect");
 
+var newMessageAudio = new Audio("audios/newMessage.mp3");
+
 document.getElementById("searchUserValue").addEventListener("keyup",function(event){
 
 	if(event.keyCode==13){//enter keycode
@@ -309,10 +311,11 @@ function loadUnseenMessages(){
 				var currentUser = chatData[0].CurrentUser.trim();
 				for(var t=0;t<chatData.length;t++){
 					if(currentUser==chatData[t].Username1.trim()){
-						//createSelfMessageBox(chatData[t].Message,chatData[t].MessageTime);
+						//do nothing
 					}
 					else{
 						createOppMessageBox(chatData[t].Message,chatData[t].MessageTime);
+						newMessageAudio.play();
 					}
 				}
 				chatboxScrollCheck();
