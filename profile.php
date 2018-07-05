@@ -9,6 +9,10 @@ if(!isset($_SESSION["username"])){
 	exit();
 }
 
+if(isset($_SESSION["viewUser"])){
+	unset($_SESSION["viewUser"]);
+}
+
 ?>
 
 <!DOCTYPE html>
