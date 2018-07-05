@@ -1,3 +1,5 @@
+var listingRegion = document.getElementById("listingRegion");
+
 function followBtnClick(y){
 
 	var idAttr = y.getAttribute("id");
@@ -59,4 +61,47 @@ function messageBtnAppend(){
 
 }
 
+function recentActivity(){
+
+	while(listingRegion.firstChild){
+		listingRegion.removeChild(listingRegion.firstChild);
+	}
+
+	var xmlhttp;
+	if (window.XMLHttpRequest){
+	  		xmlhttp = new XMLHttpRequest();
+	} 
+	 else{
+	  	xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	var url = "getListings.php";
+	var data;
+	var params = "purpose=others";
+	xmlhttp.onreadystatechange = function(){
+		if(this.readyState==4&&this.status==200){
+			cards = 0;
+			data = JSON.parse(this.responseText);
+			for(var u=0;u<data.length;u++){
+				createCard(cards,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime);
+			}
+			if(!listingRegion.firstChild){
+				noRecentActivityDisplay();
+			}
+		}
+	};
+	xmlhttp.open("POST",url,true);
+	xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+	xmlhttp.send(params);
+
+}
+
+function noRecentActivityDisplay(){
+	var div = document.createElement("div");
+	var divText = document.createTextNode("No active listings added by the user!");
+	div.appendChild(divText);
+	listingRegion.appendChild(div);
+	div.setAttribute("class","no-listings card bg-light");
+}
+
 messageBtnAppend();
+recentActivity();

@@ -70,7 +70,8 @@ if(!$stmt){
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/viewProfile.css">
 	<link rel="stylesheet" type="text/css" href="css/topnav.css">
-
+	<link rel="stylesheet" type="text/css" href="css/listingCard.css">
+  	<link rel="stylesheet" type="text/css" href="css/usernameChips.css">
 </head>
 <body>
 	<div id="navbar" class="topnav">
@@ -105,6 +106,7 @@ if(!$stmt){
 </script>	
 <script src="js/functions.js"></script>
 <script src="js/viewProfile.js"></script>
+<script src="js/createCard.js"></script>
 <script src="js/viewProfileClick.js"></script>
 </body>
 </html>
