@@ -45,7 +45,7 @@ if(isset($_SESSION["viewUser"])){
 	  	<a class="options" onclick="messages()">Messages</a>
 	</div>	
 	<div class="sidenav" id="sidenav">
-		<a class="sidenavlinks active" onclick="">View Profile</a>
+		<a class="sidenavlinks" onclick="">View Profile</a>
 		<a class="sidenavlinks" onclick="openNewListingModal();">Add Listing</a>
 		<a id="myListingsId" class="sidenavlinks" onclick="myListings()">My Listings</a>
 		<a id="followingId" class="sidenavlinks" onclick="followDataDisplay(this);">Following</a>
