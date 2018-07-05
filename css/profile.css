@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:500);
+
 html,body{
 	margin: 0;
 	padding: 0;
@@ -16,4 +18,25 @@ li{
 .card{
 	padding: 0px;
 	height: auto;
+}
+
+.btn-custom{
+	background: #2196F3;
+}
+
+.btnsDiv{
+	margin-top: 30px;
+}
+
+.card-btn{
+	font-size: 14px;
+}
+
+.content-editable{
+	background: #fff;
+	border-style: solid;
+	border-color: #00BCD4;
+	border-radius: 5px;
+	border-width: 1px;
+	padding: 5px;
 }

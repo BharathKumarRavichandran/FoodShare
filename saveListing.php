@@ -39,6 +39,52 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 
 	}
 
+	else if($_POST['purpose']=="editListing"){
+
+		$id = $_POST['id'];
+		$title = $_POST['title'];
+		$desc = $_POST['desc'];
+		$pickupTime = $_POST['pickupTime'];
+
+		$stmt = $conn->prepare("UPDATE $tablename SET Title = ?, Description = ?, PickupTime = ? WHERE id = ?;");
+		if(!$stmt){
+			echo "Error preparing statement ".htmlspecialchars($conn->error);
+		}
+		$stmt->bind_param("sssi",$title,$desc,$pickupTime,$id);
+		$stmt->execute();
+		$stmt->close();
+
+	}
+
+	else if($_POST['purpose']=="editlistListing"){
+
+		$id = $_POST['id'];
+		$listed = $_POST['listed'];
+
+		$stmt = $conn->prepare("UPDATE $tablename SET Listed = ? WHERE id = ?;");
+		if(!$stmt){
+			echo "Error preparing statement ".htmlspecialchars($conn->error);
+		}
+		$stmt->bind_param("si",$listed,$id);
+		$stmt->execute();
+		$stmt->close();
+
+	}
+
+	else if($_POST['purpose']=="deleteListing"){
+
+		$id = $_POST['id'];
+
+		$stmt = $conn->prepare("DELETE FROM $tablename WHERE id = ?;");
+		if(!$stmt){
+			echo "Error preparing statement ".htmlspecialchars($conn->error);
+		}
+		$stmt->bind_param("i",$id);
+		$stmt->execute();
+		$stmt->close();
+
+	}
+
 }
 
 ?>
