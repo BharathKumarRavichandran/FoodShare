@@ -24,15 +24,6 @@ li{
  	overflow: auto; 
 }
 
-.no-listings{
-	padding: 10px;
-	font-size: 1.5em;
-	margin-top: 10vh;
-	text-align: center;
-	max-width: 30vw;
-	margin-left: 35vw; 
-}
-
 .btn-brown{
 	background: #645045;
 	color: white;
