@@ -68,10 +68,20 @@ if(!$stmt){
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/viewProfile.css">
+  	<link rel="stylesheet" type="text/css" href="css/viewProfile.css">
 	<link rel="stylesheet" type="text/css" href="css/topnav.css">
 	<link rel="stylesheet" type="text/css" href="css/listingCard.css">
   	<link rel="stylesheet" type="text/css" href="css/usernameChips.css">
+  	<style type="text/css">/* Overriding styles of above css files*/
+  		.no-listings{
+			padding: 10px;
+			font-size: 1.5em;
+			margin-top: 10vh;
+			text-align: center;
+			max-width: 30vw;
+			margin-left: 35vw; 
+		}
+  	</style>
 </head>
 <body>
 	<div id="navbar" class="topnav">
