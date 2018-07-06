@@ -82,7 +82,7 @@ function recentActivity(){
 			cards = 0;
 			data = JSON.parse(this.responseText);
 			for(var u=0;u<data.length;u++){
-				createCard(cards,data[u].listingId,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime);
+				createCard(cards,data[u].listingId,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime,data[u].ImgPath);
 			}
 			if(!listingRegion.firstChild){
 				noRecentActivityDisplay();
