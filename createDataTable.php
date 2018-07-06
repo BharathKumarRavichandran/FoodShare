@@ -29,6 +29,7 @@ $sql = "CREATE TABLE IF NOT EXISTS $tableName(
 		ExpiryDate DATETIME,
 		CreationTime DATETIME NOT NULL,
 		Listed VARCHAR(500) DEFAULT 'yes',
+		ImgPath VARCHAR(2000),
 		PRIMARY KEY (id)
 		)";
 $conn->query($sql);	
