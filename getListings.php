@@ -37,7 +37,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 		if($result->num_rows>0){
 			while($row = $result->fetch_assoc()){
 
-				$r = array('listingId'=>$row["id"],'Username'=>$row["Username"],'Type'=>$row["Type"],'Title'=>$row["Title"],'Description'=>$row["Description"],'Address'=>$row["Address"],'Latitude'=>$row["Latitude"],'Longitude'=>$row["Longitude"],'PickupTime'=>$row["PickupTime"],'ExpiryDate'=>$row["ExpiryDate"],'CreationTime'=>$row["CreationTime"],'Listed'=>$row["Listed"]);
+				$r = array('listingId'=>$row["id"],'Username'=>$row["Username"],'Type'=>$row["Type"],'Title'=>$row["Title"],'Description'=>$row["Description"],'Address'=>$row["Address"],'Latitude'=>$row["Latitude"],'Longitude'=>$row["Longitude"],'PickupTime'=>$row["PickupTime"],'ExpiryDate'=>$row["ExpiryDate"],'CreationTime'=>$row["CreationTime"],'Listed'=>$row["Listed"],'ImgPath'=>$row['ImgPath']);
 				array_push($listingsData,$r);	
 			}
 		}	
@@ -65,7 +65,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 
 				if($row["Listed"]=="yes"){
 
-					$r = array('listingId'=>$row["id"],'Username'=>$row["Username"],'Type'=>$row["Type"],'Title'=>$row["Title"],'Description'=>$row["Description"],'Address'=>$row["Address"],'Latitude'=>$row["Latitude"],'Longitude'=>$row["Longitude"],'PickupTime'=>$row["PickupTime"],'ExpiryDate'=>$row["ExpiryDate"],'CreationTime'=>$row["CreationTime"],'Listed'=>$row["Listed"]);
+					$r = array('listingId'=>$row["id"],'Username'=>$row["Username"],'Type'=>$row["Type"],'Title'=>$row["Title"],'Description'=>$row["Description"],'Address'=>$row["Address"],'Latitude'=>$row["Latitude"],'Longitude'=>$row["Longitude"],'PickupTime'=>$row["PickupTime"],'ExpiryDate'=>$row["ExpiryDate"],'CreationTime'=>$row["CreationTime"],'Listed'=>$row["Listed"],'ImgPath'=>$row['ImgPath']);
 					array_push($listingsData,$r);	
 
 				}
@@ -92,7 +92,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 
 				if($row["Listed"]=="yes"){
 
-					$r = array('listingId'=>$row["id"],'Username'=>$row["Username"],'Type'=>$row["Type"],'Title'=>$row["Title"],'Description'=>$row["Description"],'Address'=>$row["Address"],'Latitude'=>$row["Latitude"],'Longitude'=>$row["Longitude"],'PickupTime'=>$row["PickupTime"],'ExpiryDate'=>$row["ExpiryDate"],'CreationTime'=>$row["CreationTime"],'Listed'=>$row["Listed"]);
+					$r = array('listingId'=>$row["id"],'Username'=>$row["Username"],'Type'=>$row["Type"],'Title'=>$row["Title"],'Description'=>$row["Description"],'Address'=>$row["Address"],'Latitude'=>$row["Latitude"],'Longitude'=>$row["Longitude"],'PickupTime'=>$row["PickupTime"],'ExpiryDate'=>$row["ExpiryDate"],'CreationTime'=>$row["CreationTime"],'Listed'=>$row["Listed"],'ImgPath'=>$row['ImgPath']);
 					array_push($listingsData,$r);	
 
 				}
