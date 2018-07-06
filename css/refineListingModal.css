@@ -2,7 +2,7 @@
     display: none;
     position: fixed;
     z-index: 1;
-    padding-top: 5vh;
+    padding-top: 7vh;
     left: 0;
     top: 0;
     width: 100%;
@@ -11,6 +11,7 @@
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4);
 }
+
 
 .modal-content{
 	overflow: auto;
@@ -65,20 +66,28 @@
     width: auto;
     height: auto;
     min-width: 100%;
-    min-height: 30px;
+    max-height: 30px;
     max-width: 100%;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 3px;
-    font-family: "Comic Sans MS";
-    font-size: 1.6em;
+    font-family: "Roboto";
+    font-size: 1.3em;
 }
 
 #submitInputId{
-    margin-top: 25px;
-    margin-bottom: 10px;
-    margin-left: 1%;
+    margin-top: 15px;
+    margin-bottom: 18px;
     border-radius: 3px;
-    font-family: "Sofia";
-    font-size: 1.2em;
+    font-family: "Roboto";
+    font-size: 1.1em;
+}
+
+.expiryClass{
+    margin-left: 27%;
+}
+
+.fileUpload{
+    margin-left: 17%;
+    margin-top: 10px;
 }
