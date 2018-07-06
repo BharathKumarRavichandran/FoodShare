@@ -74,6 +74,9 @@ if(isset($_SESSION["viewUser"])){
 				<div><button id="saveLocationId" onclick="saveLocation();">Save Location</button></div>
 				<div><input id="timeInputId" class="inputClass" type="text" name="time" placeholder="Pick-up Times Eg. Monday evening"/></div>	
 				<div>Expiry Date: <input id="expiryDateId" type="date" name="expiryDate"></div>
+				<input id="fileToUpload" type="file" name="fileToUpload" accept="image/*">
+				<input type="submit" name="submit" value="Upload" onclick="imgUpload();">
+				<div><?= $_SESSION['message'] ?></div>
 				<div><input id="submitInputId" class="inputClass" type="submit" name="submitList" value="Add" onclick="addListing();"></div>
 			</div>
 		</div>

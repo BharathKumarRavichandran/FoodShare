@@ -1,7 +1,9 @@
-function createCard(cards,id,username,type,title,desc,location,pickupTime,expiryDate,creationTime){
+function createCard(cards,id,username,type,title,desc,location,pickupTime,expiryDate,creationTime,imgPath){
 
 	var li = document.createElement("li");
 	var titleDiv = document.createElement("div");
+	var imgDiv = document.createElement("div");
+	var img = document.createElement("img");
 	var descDiv = document.createElement("div");
 	var locationDiv = document.createElement("div");
 	var locateIcon = document.createElement("i");
@@ -47,6 +49,12 @@ function createCard(cards,id,username,type,title,desc,location,pickupTime,expiry
 	chipSpan.appendChild(chipSpanText);
 	chipDiv.appendChild(chipSpan);
 	li.appendChild(titleDiv);
+	if(!(imgPath === null && typeof imgPath === "object")){
+		if(!(imgPath==='NULL'||imgPath==""||!imgPath||imgPath==='null')){
+			imgDiv.appendChild(img);
+			li.appendChild(imgDiv);
+		}	
+	}
 	li.appendChild(descDiv);
 	li.appendChild(locationDiv);
 	li.appendChild(ptDiv);
@@ -55,6 +63,17 @@ function createCard(cards,id,username,type,title,desc,location,pickupTime,expiry
 	idDiv.appendChild(idText);
 	li.appendChild(idDiv);
 	document.getElementById("listingRegion").appendChild(li);
+	
+	if(!(imgPath === null && typeof imgPath === "object")){
+		if(!(imgPath==='NULL'||imgPath==""||!imgPath||imgPath==='null')){
+			img.setAttribute("src",imgPath);
+			img.setAttribute("id","img"+cards);
+			imgDiv.setAttribute("class","imgDivClass");
+			img.setAttribute("class","imgClass");	
+			img.setAttribute("alt","food-picture");
+			img.setAttribute("onerror","this.style.display='none';");
+		}	
+	}
 
 	idDiv.setAttribute("id","idDiv"+cards);
 	chipDiv.setAttribute("id","chipDiv"+cards);

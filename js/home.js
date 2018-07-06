@@ -59,7 +59,7 @@ function initialise(){
 			cards = 0;
 			data = JSON.parse(this.responseText);
 			for(var u=0;u<data.length;u++){
-				createCard(cards,data[u].listingId,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime);
+				createCard(cards,data[u].listingId,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime,data[u].ImgPath);
 			}
 			if(!listingRegion.firstChild||data.length==0){
 				noListingDisplay();
@@ -154,16 +154,16 @@ function browseListings(){
 			for(var u=0;u<data.length;u++){
 				var distance  = getDistanceFromLatLonInKm(markerLat,markerLng,data[u].Latitude,data[u].Longitude);
 				if(disConstraint=="<10KM"&&distance<10){
-					createCard(cards,data[u].listingId,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime);
+					createCard(cards,data[u].listingId,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime,data[u].ImgPath);
 				}
 				else if(disConstraint=="10KM - 30KM"&&(distance>=10&&distance<30)){
-					createCard(cards,data[u].listingId,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime);
+					createCard(cards,data[u].listingId,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime,data[u].ImgPath);
 				}
 				else if(disConstraint=="30KM - 90KM"&&(distance>=30&&distance<90)){
-					createCard(cards,data[u].listingId,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime);
+					createCard(cards,data[u].listingId,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime,data[u].ImgPath);
 				}
 				else if(disConstraint=="All Listings"){
-					createCard(cards,data[u].listingId,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime);
+					createCard(cards,data[u].listingId,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime,data[u].ImgPath);
 				}
 			}
 			if(!listingRegion.firstChild){
@@ -213,16 +213,16 @@ function refineListings(){
 				if(type.trim() == data[u].Type.trim()){
 
 					if(disConstraint=="<10KM"&&distance<10){
-						createCard(cards,data[u].listingId,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime);
+						createCard(cards,data[u].listingId,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime,data[u].ImgPath);
 					}
 					else if(disConstraint=="10KM - 30KM"&&(distance>=10&&distance<30)){
-						createCard(cards,data[u].listingId,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime);
+						createCard(cards,data[u].listingId,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime,data[u].ImgPath);
 					}
 					else if(disConstraint=="30KM - 90KM"&&(distance>=30&&distance<90)){
-						createCard(cards,data[u].listingId,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime);
+						createCard(cards,data[u].listingId,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime,data[u].ImgPath);
 					}
 					else if(disConstraint=="All Listings"){
-						createCard(cards,data[u].listingId,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime);
+						createCard(cards,data[u].listingId,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime,data[u].ImgPath);
 					}
 
 				}
