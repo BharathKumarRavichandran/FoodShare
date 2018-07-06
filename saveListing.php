@@ -9,6 +9,8 @@ if(!isset($_SESSION["username"])){
 	exit();
 }
 
+$_SESSION['message'] = "";
+
 $username = $_SESSION['username'];
 $tablename = "foods";
 
@@ -29,13 +31,86 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 		$expiryDate = $_POST['expiryDate'];
 		$creationDate = date('Y-m-d H:i:s');
 
-		$stmt = $conn->prepare("INSERT INTO $tablename(Username,Type,Title,Description,Address,Latitude,Longitude,PickupTime,ExpiryDate,CreationTime) VALUES(?,?,?,?,?,?,?,?,?,?);");
-		if(!$stmt){
-			echo "Error preparing statement ".htmlspecialchars($conn->error);
+		if(!isset($_SESSION['upload'])){
+
+			$stmt = $conn->prepare("INSERT INTO $tablename(Username,Type,Title,Description,Address,Latitude,Longitude,PickupTime,ExpiryDate,CreationTime) VALUES(?,?,?,?,?,?,?,?,?,?);");
+			if(!$stmt){
+				echo "Error preparing statement ".htmlspecialchars($conn->error);
+			}
+			$stmt->bind_param("sssssddsss",$username,$type,$title,$desc,$address,$latitude,$longitude,$pickupTime,$expiryDate,$creationDate);
+			$stmt->execute();
+			$stmt->close();
+
 		}
-		$stmt->bind_param("sssssddsss",$username,$type,$title,$desc,$address,$latitude,$longitude,$pickupTime,$expiryDate,$creationDate);
-		$stmt->execute();
-		$stmt->close();
+
+		if(isset($_SESSION['upload'])){
+
+			if(!($_FILES["fileToUpload"]["error"]==4)){
+
+				$target_dir = "uploads/";
+				$fileToUpload = $_FILES["fileToUpload"]["name"];
+				$target_file = $target_dir.basename($fileToUpload);
+				$uploadOk = 1;
+				$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+				// Check if image file is a actual image or fake image
+				if(isset($_POST["submit"])) {
+				    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+				    if($check !== false) {
+				        $_SESSION['message']="File is an image - " . $check["mime"] . ".";
+				        $uploadOk = 1;
+				    } else {
+				        $_SESSION['message']="File is not an image.";
+				        $uploadOk = 0;
+				    }
+				}
+
+				// Check if file already exists
+				if (file_exists($target_file)) {
+				    $_SESSION['message']="Sorry, file already exists.";
+				    $uploadOk = 0;
+				}
+
+				// Check file size
+				if ($_FILES["fileToUpload"]["size"] > 500000) {
+				    $_SESSION['message']="Sorry, your file is too large.";
+				    $uploadOk = 0;
+				}
+
+				// Allow certain file formats
+				if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+				&& $imageFileType != "gif" ) {
+				    $_SESSION['message']="Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+				    $uploadOk = 0;
+				}
+
+				// Check if $uploadOk is set to 0 by an error
+				if ($uploadOk == 0) {
+				    $_SESSION['message']="Sorry, your file was not uploaded.";
+				// if everything is ok, try to upload file
+				} 
+
+				else{
+				    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+				        $_SESSION['message']="The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+				        $imagePath = $conn->real_escape_string('uploads/'.$_FILES['fileToUpload']['name'].' ');
+
+				        $stmt = $conn->prepare("INSERT INTO $tablename(Username,Type,Title,Description,Address,Latitude,Longitude,PickupTime,ExpiryDate,CreationTime,ImgPath) VALUES(?,?,?,?,?,?,?,?,?,?,?);");
+						if(!$stmt){
+							echo "Error preparing statement ".htmlspecialchars($conn->error);
+						}
+						$stmt->bind_param("sssssddssss",$username,$type,$title,$desc,$address,$latitude,$longitude,$pickupTime,$expiryDate,$creationDate,$imagePath);
+						$stmt->execute();
+						$stmt->close();
+
+				    } 
+				    else {
+				        $_SESSION['message']="Sorry, there was an error uploading your file.";
+				    }
+				}
+			}
+			unset($_SESSION['upload']);
+		}	
 
 	}
 

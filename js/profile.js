@@ -24,6 +24,24 @@ function openNewListingModal(){
 
 }
 
+function imgUpload(){
+
+	var data = "";
+
+	$.ajax({
+		url:'imgUpload.php',
+		data:data,
+		processData:false,
+		contentType:false,
+		type:'POST',
+		success:function(msg){
+			console.log(msg);
+		}
+	});
+
+}
+
+
 function addListing(){
 
 	var type = selectId.options[selectId.selectedIndex].text;
@@ -33,26 +51,34 @@ function addListing(){
 	var expiryDate = document.getElementById("expiryDateId").value;
 	var purpose = "addListing";
 
-	var xmlhttp;
-	if (window.XMLHttpRequest){
-	  		xmlhttp = new XMLHttpRequest();
-	} 
-	 else{
-	  	xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-	}
-
 	var params =  "type="+type+"&title="+title+"&desc="+desc+"&address="+saveAddress+"&latitude="+saveLatitude+"&longitude="+saveLongitude+"&time="+time+"&expiryDate="+expiryDate+"&purpose="+purpose;
-	var url = "saveListing.php";
-	xmlhttp.onreadystatechange = function(){
-		if(this.readyState==4&&this.status==200){
+
+	var file = document.getElementById("fileToUpload").files[0];
+	var formData = new FormData();
+	formData.append('fileToUpload',file);
+	formData.append('type',type);
+	formData.append('title',title);
+	formData.append('desc',desc);
+	formData.append('address',saveAddress);
+	formData.append('latitude',saveLatitude);
+	formData.append('longitude',saveLongitude);
+	formData.append('time',time);
+	formData.append('expiryDate',expiryDate);
+	formData.append('purpose',purpose);
+
+	$.ajax({
+		url:'saveListing.php',
+		data:formData,
+		processData:false,
+		contentType:false,
+		type:'POST',
+		success:function(msg){
+			console.log(msg);
 			if(document.getElementById("myListingsId").classList.contains("active")){
 				document.getElementById("myListingsId").click();
 			}
 		}
-	};
-	xmlhttp.open("POST",url,true);
-	xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');
-	xmlhttp.send(params);
+	});
 
 	document.getElementById("titleInputId").value = "";
 	document.getElementById("titleInputId").placeholder = "Title";
@@ -94,7 +120,7 @@ function myListings(){
 			cards = 0;
 			data = JSON.parse(this.responseText);
 			for(var u=0;u<data.length;u++){
-				createCard(cards,data[u].Listed,data[u].listingId,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime);
+				createCard(cards,data[u].Listed,data[u].listingId,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime,data[u].ImgPath);
 			}
 			if(!listingRegion.firstChild){
 				noListingDisplay();
@@ -137,7 +163,7 @@ function unlistedListings(){
 			data = JSON.parse(this.responseText);
 			for(var u=0;u<data.length;u++){
 				if(data[u].Listed=="no"){
-					createCard(cards,data[u].Listed,data[u].listingId,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime);
+					createCard(cards,data[u].Listed,data[u].listingId,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime,data[u].ImgPath);
 				}
 			}
 			if(!listingRegion.firstChild){
@@ -236,10 +262,12 @@ function followDataDisplay(y){
 
 }
 
-function createCard(cards,listed,id,username,type,title,desc,location,pickupTime,expiryDate,creationTime){
+function createCard(cards,listed,id,username,type,title,desc,location,pickupTime,expiryDate,creationTime,imgPath){
 
 	var li = document.createElement("li");
 	var titleDiv = document.createElement("div");
+	var imgDiv = document.createElement("div");
+	var img = document.createElement("img");
 	var descDiv = document.createElement("div");
 	var locationDiv = document.createElement("div");
 	var locateIcon = document.createElement("i");
@@ -307,6 +335,12 @@ function createCard(cards,listed,id,username,type,title,desc,location,pickupTime
 	delBtn.appendChild(delText);
 
 	li.appendChild(titleDiv);
+	if(!(imgPath === null && typeof imgPath === "object")){
+		if(!(imgPath==='NULL'||imgPath==""||!imgPath||imgPath==='null')){
+			imgDiv.appendChild(img);
+			li.appendChild(imgDiv);
+		}	
+	}
 	li.appendChild(descDiv);
 	li.appendChild(locationDiv);
 	li.appendChild(ptDiv);
@@ -319,6 +353,17 @@ function createCard(cards,listed,id,username,type,title,desc,location,pickupTime
 	btnsDiv.appendChild(delBtn);
 	li.appendChild(btnsDiv);
 	document.getElementById("listingRegion").appendChild(li);
+
+	if(!(imgPath === null && typeof imgPath === "object")){
+		if(!(imgPath==='NULL'||imgPath==""||!imgPath||imgPath==='null')){
+			img.setAttribute("src",imgPath);
+			img.setAttribute("id","img"+cards);
+			imgDiv.setAttribute("class","imgDivClass");
+			img.setAttribute("class","imgClass");	
+			img.setAttribute("alt","food-picture");
+			img.setAttribute("onerror","this.style.display='none';");
+		}	
+	}
 
 	li.setAttribute("id","li"+cards);
 	idDiv.setAttribute("id","idDiv"+cards);
@@ -488,7 +533,7 @@ function delListing(y){
     var id = document.getElementById("idDiv"+k).innerHTML;
     var purpose = "deleteListing";
 
-    y.remove();
+   	document.getElementById("li"+k).remove();
 
 	var xmlhttp;
 	if (window.XMLHttpRequest){
