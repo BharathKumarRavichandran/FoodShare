@@ -31,6 +31,7 @@ $_SESSION['message'] = "NOTE : Username cannot be changed !";
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
   	<link rel="stylesheet" type="text/css" href="css/topnav.css">
+  	<link rel="stylesheet" type="text/css" href="css/customButton.css">
 </head>
 
 <body>
@@ -117,10 +118,35 @@ $_SESSION['message'] = "NOTE : Username cannot be changed !";
 		          		<div class="row">
 				            <label class="col-md-3 control-label"></label>
 				            <div class="col-md-8">
-				            	<input type="button" class="btn btn-primary" value="Save Changes" onclick="saveChanges()">
+				            	<input type="button" class="btn btn-custom" value="Save Changes" onclick="saveChanges()">
 				            </div>
 				        </div>    
-		         	 </div>
+		         	</div>
+
+					<hr>
+
+		         	<div class="form-group" style="margin-top: 0px;">
+		          		<div class="row">
+				            <label class="col-md-3 control-label" style="font-size: 20px;">Delete Account</label>
+				            <div class="col-md-8" style="margin-top: 10px; font-size: 15px;">
+				            	<div>Are you sure to delete your account and all information related to your account? Please be aware that all data will be permanently lost if you delete your account.</div>
+				            </div>
+				        </div>    
+		            	<div class="row">
+		            		<div class="col-md-3"></div>
+			            	<div class="form-group" style="margin-top: 10px; margin-left: 2px;">
+						            <div class="col-md-10">
+						            	<input id="password" class="form-control" type="password" name="password" placeholder="Enter Password">
+						            </div>
+						            <div class="col-md-0"></div>
+						        </div>    
+				         	 </div>
+			         	 </div>
+			         	<div class="col-md-3"></div>
+			         	<div class="col-md-9">
+		              		<input type="button" class="btn btn-danger" value="Delete Account" onclick="deleteAccount()" style="margin-left: -10px;">
+		            	</div>
+		          	</div>
 
 		        </form>
 
