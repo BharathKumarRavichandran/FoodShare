@@ -61,6 +61,10 @@ function messageBtnClick(){
   window.location = "messages.php"; 
 }
 
+function settings(){
+  window.location = "settings.php";
+}
+
 function logout(){
 	window.location = "logout.php";
 }
