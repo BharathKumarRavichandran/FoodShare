@@ -1,7 +1,7 @@
 html,body{
 	margin: 0;
 	padding: 0;
-	font-family: 'Sofia';
+	font-family: 'Roboto';
 	background-color: #e9e9e9;
 }
 
@@ -17,53 +17,41 @@ html,body{
 	text-align: center;
 	font-family: 'Sofia';
 	letter-spacing: 0.4em;
-	font-size: 2.5em;
+	font-size: 40px;
 	padding: 5px;
 	padding-bottom: 0px;
+	margin-top: 130px;
 }
 
 #errMsg{
     overflow: auto;
     background: red;
-    margin-top: -10px;
+    margin-top: 10px;
     letter-spacing: 0.1em;
-    font-size: 1.1em;
-    margin-left: 42.2vw;
-    width: 14vw;
+    font-size: 15px;
+    width: 16vw;
     padding: 3px;
+    margin-left: 2vw;
     padding-left: 10px;
     border-radius: 4px;
     margin-bottom: 20px;
 }
 
 #usernameIn{
-	height: 20px;
-	border-radius: 3px;
-	margin: 10px;
 	font-family: 'Trubuchet MS';
 	letter-spacing: 0.1em;
-	font-size: 1.3em;
-	margin-left: 42.6vw;
+	font-size: 20px;
 }
 
 #passIn{
-	height: 20px;
-	border-radius: 3px;
-	margin: 10px;
 	font-family: 'Trubuchet MS';
 	letter-spacing: 0.1em;
-	font-size: 1.3em;
-	margin-left: 42.6vw;
+	font-size: 20px;
 }
 
 #submitIn{
-	margin-top: 1%;
-	border-radius: 3px;
-	font-family: 'Sofia';
 	letter-spacing: 0.3em;
-	font-size: 1.1em;
-	margin-left: 46.6vw;
-	min-width: 7vw;
+	font-size: 20px;
 }
 
 .options{
@@ -77,9 +65,7 @@ html,body{
 }
 
 #signupb{
-	border-radius: 3px;
-	font-family: 'Sofia';
 	letter-spacing: 0.3em;
-	font-size: 1em;
+	font-size: 17px;
 	min-width: 7vw;
 }

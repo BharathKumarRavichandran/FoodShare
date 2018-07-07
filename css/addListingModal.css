@@ -2,7 +2,7 @@
     display: none;
     position: fixed;
     z-index: 1;
-    padding-top: 5vh;
+    padding-top: 1vh;
     left: 0;
     top: 0;
     width: 100%;
@@ -53,7 +53,7 @@
 .modal-header{
     border-radius: 10px;
     padding: 2px 16px;
-    background-color: #645045;
+    background-color: #04C260;
     color: white;
 }
 
@@ -62,36 +62,34 @@
 }
 
 #modalSelectId{
-    margin-top: 10px;
     margin-left: 40%;
+    margin-top: 10px;
+    margin-bottom: 15px;
 }
 
 .inputClass{
     width: auto;
     height: auto;
     min-width: 100%;
-    min-height: 30px;
-    max-width: 100%;
-    margin-top: 20px;
-    margin-bottom: 10px;
     border-radius: 3px;
     font-family: "Comic Sans MS";
-    font-size: 1.6em;
+    font-size: 20px;
+    height: 30px;
 }
 
 #saveLocationId{
     min-height: 30px;
     min-width: 100%;
     margin-top: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 3px;
     border-radius: 3px;
 }
 
 #submitInputId{
-    margin-top: 25px;
+    margin-top: 15px;
     margin-bottom: 10px;
     margin-left: 1%;
     border-radius: 3px;
     font-family: "Sofia";
-    font-size: 1.2em;
+    font-size: 15px;
 }

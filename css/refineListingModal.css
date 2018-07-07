@@ -54,12 +54,23 @@
 .modal-header{
     border-radius: 10px;
     padding: 2px 16px;
-    background-color: #645045;
+    background-color: #04C260;
     color: white;
 }
 
 .modal-body{
     padding: 2px 16px;
+}
+
+.typeRefine{
+    margin-top: 20px;
+    margin-left: 38%;
+    margin-bottom: 20px;
+}
+
+.distanceRefine{
+    margin-top: 20px;
+    margin-left: 26%;
 }
 
 .inputClass{
@@ -71,16 +82,14 @@
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 3px;
-    font-family: "Roboto";
-    font-size: 1.3em;
+    font-size: 20px;
 }
 
 #submitInputId{
     margin-top: 15px;
     margin-bottom: 18px;
     border-radius: 3px;
-    font-family: "Roboto";
-    font-size: 1.1em;
+    font-size: 20px;
 }
 
 .expiryClass{

@@ -1,16 +1,14 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:500);
-
 html,body{
 	margin: 0;
 	padding: 0;
-	font-family: Georgia, Helvetica, 'sans-serif';
+	font-family: 'Georgia', 'Helvetica', 'sans-serif';
 }
 
 li{
 	list-style-type: none;
 }
 
-.container{
+.container-card{
 	width: 43vw;
 	height: auto;
 }
