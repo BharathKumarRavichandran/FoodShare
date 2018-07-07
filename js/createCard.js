@@ -79,7 +79,7 @@ function createCard(cards,id,username,type,title,desc,location,pickupTime,expiry
 	chipDiv.setAttribute("id","chipDiv"+cards);
 	chipSpan.setAttribute("id","username"+cards);
 
-	li.setAttribute("class","container card bg-light listingCardLi");
+	li.setAttribute("class","container container-card card bg-light listingCardLi");
 	titleDiv.setAttribute("class","cardTitle");
 	descDiv.setAttribute("class","cardDesc");
 	locationDiv.setAttribute("class","card-div");

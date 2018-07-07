@@ -26,6 +26,7 @@ $_SESSION['message']="";
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
@@ -38,6 +39,7 @@ $_SESSION['message']="";
   	<link rel="stylesheet" type="text/css" href="css/userBox.css">
   	<link rel="stylesheet" type="text/css" href="css/listingCard.css">
   	<link rel="stylesheet" type="text/css" href="css/usernameChips.css">
+  	<link rel="stylesheet" type="text/css" href="css/customButton.css">
 </head>
 
 <body>
@@ -46,6 +48,7 @@ $_SESSION['message']="";
 		<a class="active options" href="#home" onclick="home()">Home</a>
 	  	<a class="options" onclick="profile()">Profile</a>
 	  	<a class="options" onclick="messages()">Messages</a>
+	  	<a class="options" onclick="settings()">Settings</a>
 	  	<span class="search-container">
 	      	<input id="searchValue" type="text" placeholder="Search User" name="search" />
 	      	<button id="searchButtonId" onclick="searchUser()"><i class="fa fa-search"></i></button>	
@@ -59,11 +62,11 @@ $_SESSION['message']="";
 	<div class="modal" id="modalId"> 
 		<div class="modal-content">
 			<div class="modal-header">
-				<h2 style="text-align: center; font-size: 1.8em; margin-left: 25%; padding: 5px;">Refine results by:</h2>
+				<h2 style="text-align: center; font-size: 1.8em; margin-left: 30%; padding: 5px;">Refine results by:</h2>
 				<span class="close" id="modalCloseId">&times;</span>
 			</div>
 			<div class="modal-body">
-				<div><span>Type : </span>
+				<div class="typeRefine"><span>Type : </span>
 					<select id="modalSelectId1">
 						<option>Offering</option>
 						<option>Wanted</option>
@@ -71,7 +74,7 @@ $_SESSION['message']="";
 				</div>
 				<input id="pac-input" class="controls" type="text" name="location" placeholder="Locate by place"/>
 				<div id="map"></div>
-				<div><span>Show results within : </span>
+				<div class="distanceRefine"><span>Show results within : </span>
 					<select id="modalSelectId2">
 						<option>&lt;10KM</option>
 						<option>10KM - 30KM</option>
@@ -79,7 +82,7 @@ $_SESSION['message']="";
 						<option>All Listings</option>
 					</select>
 				</div>
-				<div><input id="submitInputId" class="inputClass" type="submit" name="refineList" value="Refine" onclick="refineListings();"></div>
+				<div class="form-group"><input id="submitInputId" class="inputClass btn btn-custom" type="submit" name="refineList" value="Refine" onclick="refineListings();"></div>
 			</div>
 		</div>
 	</div>

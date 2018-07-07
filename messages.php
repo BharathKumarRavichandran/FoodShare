@@ -26,6 +26,7 @@ $_SESSION['message']="";
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
@@ -33,6 +34,7 @@ $_SESSION['message']="";
   	<link rel="stylesheet" type="text/css" href="css/sidenav.css">
   	<link rel="stylesheet" type="text/css" href="css/messages.css">
   	<link rel="stylesheet" type="text/css" href="css/message.css">
+  	<link rel="stylesheet" type="text/css" href="css/customButton.css">
 </head>
 
 <body>
@@ -41,6 +43,7 @@ $_SESSION['message']="";
 		<a class="options" href="#home" onclick="home()">Home</a>
 	  	<a class="options" onclick="profile()">Profile</a>
 	  	<a class="options active" onclick="messages()">Messages</a>
+	  	<a class="options" onclick="settings()">Settings</a>
 	</div>	
 	<div class="sidenav" id="sidenav">
 		<span class="search-container" style="padding: 15px;">

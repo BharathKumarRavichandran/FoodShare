@@ -34,13 +34,13 @@ function createUserBox(cards,username,btnText){
 		button2.setAttribute("id","viewProfileBtn"+cards);
 	}
 
-	li.setAttribute("class","userBoxClass liClass container card card-body bg-light");
+	li.setAttribute("class","userBoxClass liClass container container-card card card-body bg-light");
 	li.setAttribute("style","display:inline-block");
 	userSpan.setAttribute("class","userNameDisp");
-	button.setAttribute("class","userBtn btn btn-brown");
+	button.setAttribute("class","userBtn btn btn-custom");
 	button.setAttribute("onclick","followBtnClick(this)");
 	if(btnText!="View Profile"){
-		button2.setAttribute("class","userBtn btn btn-brown");
+		button2.setAttribute("class","userBtn btn btn-custom");
 		button2.setAttribute("onclick","viewProfileBtnClick(this)");
 	}
 

@@ -118,24 +118,39 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
     <script src='https://www.google.com/recaptcha/api.js'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/register.css">
     <link rel="stylesheet" type="text/css" href="css/footer.css">
+    <link rel="stylesheet" type="text/css" href="css/customButton.css">
 </head>
 <body>
-	<a onclick="#"><h1 class="title">FoodShare</h1></a>
+	<a onclick="#" style="text-decoration: none; color: black;"><h1 class="title">FoodShare</h1></a>
     <h2 id="registerTitle">Sign Up</h2>
-    <form action="register.php" method="post" autocomplete="off">
-    	<div id="errMsg"><?= $_SESSION['message'] ?><span id="errMsg1"></span></div>
-    	<div><input id="usernameIn" type="text" placeholder="Username" name="username" onkeyup="usernameAvailabilty(this.value);" onblur="usernameFocusOut();" required /></div>
-	    <div><input id="emailIn" type="email" placeholder="Email" name="email" required /></div>
-	    <div><input class="passIn" type="password" placeholder="Password" name="password" required /></div>
-	    <div><input class="passIn" type="password" placeholder="Confirm Password" name="confirmpassword" required /></div>
-        <div class="reCaptchaClass"><div class="g-recaptcha" data-sitekey="Your-Public-Key"></div></div>
-	    <div><input id="submitIn" type="submit" value="Register" name="register"/></div>
-    </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <form action="register.php" method="post" autocomplete="off">
+                        <div id="errMsg"><?= $_SESSION['message'] ?><span id="errMsg1"></span></div>
+                            <div class="form-group"><input id="usernameIn" class="form-control" type="text" placeholder="Username" name="username" onkeyup="usernameAvailabilty(this.value);" onblur="usernameFocusOut();" required /></div>
+                            <div class="form-group"><input id="emailIn" class="form-control" type="email" placeholder="Email" name="email" required /></div>
+                            <div class="form-group"><input class="passIn form-control" type="password" placeholder="Password" name="password" required /></div>
+                            <div class="form-group"><input class="passIn form-control" type="password" placeholder="Confirm Password" name="confirmpassword" required /></div>
+                            <div class="reCaptchaClass"><div class="g-recaptcha" data-sitekey="Your-Public-Key"></div></div>
+                            <div class="form-group"><input id="submitIn" class="form-control btn btn-custom" type="submit" value="Register" name="register"/></div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>          
+    </div>
     <div class="options">
         <span class="text">Already have an account?</span>
-        <span><button id="loginb" onclick="login()">Login</button></span>
+        <span><button id="loginb" class="btn btn-custom" onclick="login()">Login</button></span>
     </div>
     <footer>
         <p id="foot">Made with <span id="heart">&hearts;</span> by <a id="nameLink" href="https://BharathKumarRavichandran.github.io">Bharath Kumar Ravichandran</a></p>

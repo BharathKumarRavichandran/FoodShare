@@ -16,7 +16,7 @@ function createSelfMessageBox(message,time){
 	div.appendChild(span);
 	document.getElementById("chatRegion").appendChild(div);
 
-	div.setAttribute("class","container darker");
+	div.setAttribute("class","container container-card darker");
 	img.setAttribute("class","right");
 	span.setAttribute("class","time-left");
 
@@ -44,7 +44,7 @@ function createOppMessageBox(message,time){
 	div.appendChild(span);
 	document.getElementById("chatRegion").appendChild(div);
 
-	div.setAttribute("class","container");
+	div.setAttribute("class","container container-card");
 	span.setAttribute("class","time-right");
 
 	img.setAttribute("alt","Avatar");

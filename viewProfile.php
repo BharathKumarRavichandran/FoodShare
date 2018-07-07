@@ -65,6 +65,7 @@ if(!$stmt){
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
@@ -72,6 +73,7 @@ if(!$stmt){
 	<link rel="stylesheet" type="text/css" href="css/topnav.css">
 	<link rel="stylesheet" type="text/css" href="css/listingCard.css">
   	<link rel="stylesheet" type="text/css" href="css/usernameChips.css">
+  	<link rel="stylesheet" type="text/css" href="css/customButton.css">
   	<style type="text/css">/* Overriding styles of above css files*/
   		.no-listings{
 			padding: 10px;
@@ -92,7 +94,7 @@ if(!$stmt){
 	</div>
 	<div>
 		<div id="viewUser" class="userDispBig"><?= $viewUser ?></div>
-		<div id="btnRegion" style="text-align: center;"><button id="followBtn" class="userBtn btn btn-brown" onclick="followBtnClick(this)"><?= $followValue ?></button></div>
+		<div id="btnRegion" style="text-align: center;"><button id="followBtn" class="userBtn btn btn-custom" onclick="followBtnClick(this)"><?= $followValue ?></button></div>
 		<div class="recentText">User's Recent Listings</div>
 		<div id="listingRegion"></div>
 	</div>	

@@ -54,7 +54,7 @@ function messageBtnAppend(){
 		document.getElementById("btnRegion").appendChild(button);
 
 		button.setAttribute("id","messageBtn");
-		button.setAttribute("class","userBtn btn btn-brown");
+		button.setAttribute("class","userBtn btn btn-custom");
 		button.setAttribute("onclick","messageBtnClick();");
 		button.setAttribute("style","margin-left: 8px;");
 	}

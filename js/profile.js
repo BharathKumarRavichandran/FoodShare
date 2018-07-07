@@ -378,7 +378,7 @@ function createCard(cards,listed,id,username,type,title,desc,location,pickupTime
 	unlistBtn.setAttribute("id","unlistBtn"+cards);
 	delBtn.setAttribute("id","delBtn"+cards);
 
-	li.setAttribute("class","container card bg-light listingCardLi");
+	li.setAttribute("class","container container-card card bg-light listingCardLi");
 	titleDiv.setAttribute("class","cardTitle");
 	descDiv.setAttribute("class","cardDesc");
 	locationDiv.setAttribute("class","card-div");

@@ -24,6 +24,7 @@ if(isset($_SESSION["viewUser"])){
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
@@ -35,6 +36,7 @@ if(isset($_SESSION["viewUser"])){
   	<link rel="stylesheet" type="text/css" href="css/userBox.css">
   	<link rel="stylesheet" type="text/css" href="css/listingCard.css">
   	<link rel="stylesheet" type="text/css" href="css/usernameChips.css">
+  	<link rel="stylesheet" type="text/css" href="css/customButton.css">
 </head>
 
 <body>
@@ -43,9 +45,9 @@ if(isset($_SESSION["viewUser"])){
 		<a class="options" href="#home" onclick="home()">Home</a>
 	  	<a class="active options" onclick="profile()">Profile</a>
 	  	<a class="options" onclick="messages()">Messages</a>
+	  	<a class="options" onclick="settings()">Settings</a>
 	</div>	
 	<div class="sidenav" id="sidenav">
-		<a class="sidenavlinks" onclick="">View Profile</a>
 		<a class="sidenavlinks" onclick="openNewListingModal();">Add Listing</a>
 		<a id="myListingsId" class="sidenavlinks" onclick="myListings()">My Listings</a>
 		<a id="unlistedListingsId" class="sidenavlinks" onclick="unlistedListings()">Unlisted Listings</a>
@@ -66,20 +68,20 @@ if(isset($_SESSION["viewUser"])){
 						<option>Wanted</option>
 					</select>
 				</div>			
-				<div><input id="titleInputId" class="inputClass" type="text" name="title" placeholder="Title"/></div>	
-				<div><input id="descInputId" class="inputClass" type="text" name="description" placeholder="Description"/></div>	
-				<div><input id="locationInputId" class="inputClass" type="text" name="location" placeholder="Approximate Pick-up Address"/></div>
+				<div class="form-group"><input id="titleInputId" class="inputClass form-control" type="text" name="title" placeholder="Title"/></div>	
+				<div class="form-group"><input id="descInputId" class="inputClass form-control" type="text" name="description" placeholder="Description"/></div>	
+				<div class="form-group"><input id="locationInputId" class="inputClass form-control" type="text" name="location" placeholder="Approximate Pick-up Address"/></div>
 				<input id="pac-input" class="controls" type="text" name="location" placeholder="Locate by place"/>
 				<div id="map"></div>
-				<div><button id="saveLocationId" onclick="saveLocation();">Save Location</button></div>
-				<div><input id="timeInputId" class="inputClass" type="text" name="time" placeholder="Pick-up Times Eg. Monday evening"/></div>	
+				<div class="form-group"><button id="saveLocationId" onclick="saveLocation();">Save Location</button></div>
+				<div class="form-group"><input id="timeInputId" class="inputClass form-control" type="text" name="time" placeholder="Pick-up Times Eg. Monday evening"/></div>	
 				<div class="expiryClass">Expiry Date: <input id="expiryDateId" type="date" name="expiryDate"></div>
 				<div class="fileUpload">
 					<input id="fileToUpload" type="file" name="fileToUpload" accept="image/*">
 					<input type="submit" name="submit" value="Upload" onclick="imgUpload();">
 				</div>	
 				<div><?= $_SESSION['message'] ?></div>
-				<div><input id="submitInputId" class="inputClass" type="submit" name="submitList" value="Add" onclick="addListing();"></div>
+				<div class="form-group"><input id="submitInputId" class="inputClass btn btn-custom" type="submit" name="submitList" value="Add" onclick="addListing();"></div>
 			</div>
 		</div>
 	</div>
