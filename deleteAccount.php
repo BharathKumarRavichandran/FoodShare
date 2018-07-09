@@ -52,6 +52,16 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 			    }
 			    $stmt->bind_param("s",$username);
 			    if($stmt->execute() === TRUE){
+
+			    	$delUser = $username.",";
+
+			    	$stmt = $conn->prepare("UPDATE $tablename SET Followers= REPLACE(Followers,?,''), Following= REPLACE(Following,?,'');");
+					if(!$stmt){
+						echo "Error preparing statement ".htmlspecialchars($conn->error);
+					}
+					$stmt->bind_param("ss",$delUser,$delUser);
+					$stmt->execute();
+
 			    	$r = array('delete'=>'yes');
 					echo json_encode($r);
 				}
