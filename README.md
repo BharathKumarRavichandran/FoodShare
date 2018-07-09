@@ -8,7 +8,7 @@ This project uses PHP, Javascript, HTML, CSS, AJAX requests, Google Maps API and
 * App with secure login and sign up options.
 * Sign up process with real time indication of usernames availability and a Captcha.
 * Users can add type, title, description, image, approximate address(text/Google Maps), pickup time of the listings.
-* Users can add a listing to their My Listings page, and can edit, unlist, delete the listings listed by them.
+* Users can add listings to their My Listings page, and can edit, unlist, delete the listings listed by them.
 * Users can refine listing results by listing type, distance and more.
 * A user’s profile page have the following - Add Listing, My listings, Unlisted listings, User following and followers data.
 * A search bar is provided in the home page where the user can search for other users.
