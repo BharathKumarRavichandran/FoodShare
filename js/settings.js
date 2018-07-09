@@ -32,6 +32,43 @@ function saveChanges(){
 
 			document.getElementById("alertId").setAttribute("class","alert alert-dismissable "+data.alert);
 			document.getElementById("message").innerHTML = data.message;
+			document.getElementById("alertId").setAttribute("style","display:block;");
+		}
+	};
+	xmlhttp.open("POST",url,true);
+	xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+	xmlhttp.send(params);
+
+}
+
+function deleteAccount(){
+
+	var password = document.getElementById("password").value;
+	var params = "password="+password;
+
+	var xmlhttp;
+	if (window.XMLHttpRequest){
+	  		xmlhttp = new XMLHttpRequest();
+	} 
+	 else{
+	  	xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	var url = "deleteAccount.php";
+	var data;
+	xmlhttp.onreadystatechange = function(){
+		if(this.readyState==4&&this.status==200){
+			data = JSON.parse(this.responseText);
+			if(data.delete == "no"){
+				document.getElementById("password").value = "";
+				document.getElementById("alertId").setAttribute("class","alert alert-dismissable "+data.alert);
+				document.getElementById("message").innerHTML = data.message;
+				document.getElementById("alertId").setAttribute("style","display:block;");		
+			}
+			else if(data.delete == "yes"){
+				logout();
+			}
+			
 		}
 	};
 	xmlhttp.open("POST",url,true);

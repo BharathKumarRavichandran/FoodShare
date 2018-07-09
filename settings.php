@@ -59,7 +59,7 @@ $_SESSION['message'] = "NOTE : Username cannot be changed !";
 		    <!----------------------------------------------->  
 		      <div class="col-md-9 personal-info">
 
-		        <div id="alertId" class="alert alert-info alert-dismissable">
+		        <div id="alertId" class="alert alert-info alert-dismissable" style="display: none;">
 			        <a class="panel-close close" data-dismiss="alert">×</a> 
 			        <div id="message"><?= $_SESSION['message']; ?></div>
 		        </div>
