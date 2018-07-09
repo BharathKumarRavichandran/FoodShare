@@ -333,7 +333,8 @@ function noUserChatsDisplay(){
 	var divText = document.createTextNode("No User chats to display!");
 	div.appendChild(divText);
 	userChatSelect.appendChild(div);
-	div.setAttribute("class","no-userchats");	
+	div.setAttribute("class","no-userchats");
+	div.setAttribute("style","font-size: 19px");	
 }
 
 function noChatMessagesDisplay(){

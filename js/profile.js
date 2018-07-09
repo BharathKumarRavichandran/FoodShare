@@ -193,6 +193,14 @@ function noUnlistedListingDisplay(){
 	div.setAttribute("class","no-listings card bg-light");
 }
 
+function noUsersDisplay(){
+	var div = document.createElement("div");
+	var divText = document.createTextNode("No Users to display!");
+	div.appendChild(divText);
+	listingRegion.appendChild(div);
+	div.setAttribute("class","no-listings card bg-light");
+}
+
 function followDataDisplay(y){
 
 	var children = document.getElementById("sidenav").children;
@@ -225,7 +233,7 @@ function followDataDisplay(y){
 	    if(this.readyState==4&&this.status==200){
 	    	cards=0;
 	    	userData = JSON.parse(this.responseText);
-	    	if(userData.length==0){
+	    	if((userData.length==0)||(userData.length==1&&userData[0].currentUser==userData[0].Username)){
 	    		noUsersDisplay();
 	    	}
 	    	else{
