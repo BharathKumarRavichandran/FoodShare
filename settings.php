@@ -50,11 +50,7 @@ $_SESSION['message'] = "NOTE : Username cannot be changed !";
 			<div class="row">
 			<!----------------------------------------------->
 		      <div class="col-md-3">
-		        <div class="text-center">
-		          <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
-		          <h6>Upload a different photo...</h6>          
-		          <input type="file" class="form-control">
-		        </div>
+		      	
 		      </div>
 		    <!----------------------------------------------->  
 		      <div class="col-md-9 personal-info">
