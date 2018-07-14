@@ -139,7 +139,6 @@ if(isset($_SESSION["viewUser"])){
 <script src="js/map.js"></script>
 <script src="js/functions.js"></script>
 <script src="js/profile.js"></script>
-<script src="js/generic.js"></script>
 <script src="js/createUserBox.js"></script>
 <script src="js/follow.js"></script>
 <script src="js/viewProfileClick.js"></script>

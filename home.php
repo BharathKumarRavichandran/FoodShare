@@ -126,7 +126,6 @@ $_SESSION['message']="";
 <script src="js/map.js"></script>
 <script src="js/functions.js"></script>
 <script src="js/home.js"></script>
-<script src="js/generic.js"></script>
 <script src="js/createCard.js"></script>
 <script src="js/createUserBox.js"></script>
 <script src="js/follow.js"></script>
