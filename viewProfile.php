@@ -91,6 +91,7 @@ if(!$stmt){
 		<a class="options" href="#home" onclick="home()">Home</a>
 	  	<a class="options" onclick="profile()">Profile</a>
 	  	<a class="options" onclick="messages()">Messages</a>
+	  	<a class="options" onclick="settings()">Settings</a>
 	</div>
 	<div>
 		<div id="viewUser" class="userDispBig"><?= $viewUser ?></div>
