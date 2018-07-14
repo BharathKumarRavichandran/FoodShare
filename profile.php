@@ -70,15 +70,20 @@ if(isset($_SESSION["viewUser"])){
 				</div>			
 				<div class="form-group"><input id="titleInputId" class="inputClass form-control" type="text" name="title" placeholder="Title"/></div>	
 				<div class="form-group"><input id="descInputId" class="inputClass form-control" type="text" name="description" placeholder="Description"/></div>	
-				<div class="form-group"><input id="locationInputId" class="inputClass form-control" type="text" name="location" placeholder="Approximate Pick-up Address"/></div>
+				<div class="form-group"><input id="locationInputId" class="inputClass form-control" type="text" name="location" placeholder="Add Pick-up Address here or Enter using map"/></div>
 				<input id="pac-input" class="controls" type="text" name="location" placeholder="Locate by place"/>
 				<div id="map"></div>
 				<div class="form-group"><button id="saveLocationId" onclick="saveLocation();">Save Location</button></div>
 				<div class="form-group"><input id="timeInputId" class="inputClass form-control" type="text" name="time" placeholder="Pick-up Times Eg. Monday evening"/></div>	
-				<div class="expiryClass">Expiry Date: <input id="expiryDateId" type="date" name="expiryDate"></div>
-				<div class="fileUpload">
-					<input id="fileToUpload" type="file" name="fileToUpload" accept="image/*">
-					<input type="submit" name="submit" value="Upload" onclick="imgUpload();">
+				<div class="expiryClass" style="margin-top: 10px; margin-left: 23%;">Expiry Date: <input id="expiryDateId" type="date" name="expiryDate"></div>
+				<div class="fileUpload row" style="margin-top: 15px;">
+					<div class="col-md-2"></div>
+					<div class="col-md-5">
+						<input id="fileToUpload" type="file" name="fileToUpload" accept="image/*">
+					</div>
+					<div class="col-md-5">
+						<input type="submit" name="submit" value="Upload" onclick="imgUpload();">
+					</div>
 				</div>	
 				<div><?= $_SESSION['message'] ?></div>
 				<div class="form-group"><input id="submitInputId" class="inputClass btn btn-custom" type="submit" name="submitList" value="Add" onclick="addListing();"></div>
@@ -116,6 +121,8 @@ if(isset($_SESSION["viewUser"])){
 		document.getElementById("descInputId").value = "";
 		document.getElementById("descInputId").placeholder = "Description";
 		document.getElementById("timeInputId").value = "";
+		document.getElementById("locationInputId").value = "";
+		document.getElementById("locationInputId").placeholder = "Add Pick-up Address here or Enter using map";
 		document.getElementById("timeInputId").placeholder = "Pick-up Times Eg. Monday evening";
 		document.getElementById("expiryDateId").value = new Date().toDateInputValue();
 	}

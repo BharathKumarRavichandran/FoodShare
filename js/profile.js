@@ -85,6 +85,8 @@ function addListing(){
 	document.getElementById("descInputId").value = "";
 	document.getElementById("descInputId").placeholder = "Description";
 	document.getElementById("timeInputId").value = "";
+	document.getElementById("locationInputId").value = "";
+	document.getElementById("locationInputId").placeholder = "Add Pick-up Address here or Enter using map";
 	document.getElementById("timeInputId").placeholder = "Pick-up Times Eg. Monday evening";
 	document.getElementById("expiryDateId").value = new Date().toDateInputValue();
 	modal.style.display = "none";
