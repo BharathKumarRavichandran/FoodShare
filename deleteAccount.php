@@ -70,6 +70,22 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 					$stmt->bind_param("s",$username);
 					$stmt->execute();
 
+					$tablename = "chats";
+					$stmt = $conn->prepare("DELETE FROM $tablename WHERE Username1=? OR Username2=?;");
+					if(!$stmt){
+						echo "Error preparing statement ".htmlspecialchars($conn->error);
+					}
+					$stmt->bind_param("ss",$username,$username);
+					$stmt->execute();
+
+					$tablename = "totalchats";
+					$stmt = $conn->prepare("DELETE FROM $tablename WHERE Username1=? OR Username2=?;");
+					if(!$stmt){
+						echo "Error preparing statement ".htmlspecialchars($conn->error);
+					}
+					$stmt->bind_param("ss",$username,$username);
+					$stmt->execute();
+
 			    	$r = array('delete'=>'yes');
 					echo json_encode($r);
 				}
