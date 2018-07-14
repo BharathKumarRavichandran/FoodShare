@@ -104,7 +104,6 @@ function searchUserChatSuggestions(){
 	    if(this.readyState==4&&this.status==200){
 	    	cards=0;
 	    	userData = JSON.parse(this.responseText);
-	    	console.log(userData);
 	    	if(userData.length==0){
 	    		noUserChatsDisplay();
 	    	}
@@ -272,6 +271,7 @@ function userChatLinkClick(y){
 						createOppMessageBox(chatData[t].Message,chatData[t].MessageTime);
 					}
 				}
+				loadUnseenMessages();
 				chatboxScrollCheck();
 			}
 			else{
@@ -311,7 +311,7 @@ function loadUnseenMessages(){
 				var currentUser = chatData[0].CurrentUser.trim();
 				for(var t=0;t<chatData.length;t++){
 					if(currentUser==chatData[t].Username1.trim()){
-						//do nothing
+						createSelfMessageBox(chatData[t].Message,chatData[t].MessageTime);
 					}
 					else{
 						createOppMessageBox(chatData[t].Message,chatData[t].MessageTime);
