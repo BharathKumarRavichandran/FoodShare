@@ -62,6 +62,14 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 					$stmt->bind_param("ss",$delUser,$delUser);
 					$stmt->execute();
 
+					$tablename = "foods";
+					$stmt = $conn->prepare("DELETE FROM $tablename WHERE username=? ;");
+					if(!$stmt){
+						echo "Error preparing statement ".htmlspecialchars($conn->error);
+					}
+					$stmt->bind_param("s",$username);
+					$stmt->execute();
+
 			    	$r = array('delete'=>'yes');
 					echo json_encode($r);
 				}
