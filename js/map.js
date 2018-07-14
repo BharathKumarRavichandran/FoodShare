@@ -127,7 +127,7 @@ function coordinates_to_address(lat,lng){
 
     geocoder.geocode({'latLng': latlng}, function(results, status) {
         if(status == google.maps.GeocoderStatus.OK) {
-            if(results[0]) {
+            if(results[0]){
                 var address = (results[0].formatted_address);
                 saveAddress = address;
                 console.log(saveAddress);
@@ -139,10 +139,10 @@ function coordinates_to_address(lat,lng){
         }
         else{
             var error = {
-                'ZERO_RESULTS': 'Kunde inte hitta adress'
+                'ZERO_RESULTS': 'National Institute of Technology, Tiruchirappalli'
             }
 
-            // alert('Geocoder failed due to: ' + status);
+            // alert('Geocoder failed due to: '+status);
             console.log(error[status]);
         }
     });
