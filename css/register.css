@@ -17,10 +17,10 @@ html,body{
     text-align: center;
     font-family: 'Sofia';
     letter-spacing: 0.4em;
-    font-size: 40px;
+    font-size: 30px;
     padding: 5px;
     padding-bottom: 0px;
-    margin-top: 80px;
+    margin-top: 20px;
 }
 
 #errMsg{
@@ -31,7 +31,7 @@ html,body{
     font-size: 15px;
     width: 16vw;
     padding: 3px;
-    margin-left: 2vw;
+    margin-left: 3.3vw;
     padding-left: 10px;
     border-radius: 4px;
     margin-bottom: 20px;
@@ -68,7 +68,7 @@ html,body{
 }
 
 .options{
-    margin-top: 5vh;
+    margin-top: 3vh;
 }
 
 .text{
