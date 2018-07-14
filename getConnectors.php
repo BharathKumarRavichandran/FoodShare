@@ -42,7 +42,18 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 
 			if((strpos($row["Following"],$currUser)!==false)||(strpos($row["Followers"],$currUser)!==false)){
 
-				$r = array('Username'=>$row["username"]);
+				$tablename = "user";
+				$imagePathOther = "";
+				$stmt = $conn->prepare("SELECT `DisplayImagePath` FROM $tablename WHERE username = ?");
+				$stmt->bind_param("s",$row["username"]);
+				$stmt->execute();
+				$stmt->bind_result($dpPath);
+				while($stmt->fetch()){
+				    $imagePathOther = $dpPath;
+				}
+				$stmt->close();
+
+				$r = array('Username'=>$row["username"],'imagePathOther'=>$imagePathOther);
 				array_push($userData,$r);
 
 			}

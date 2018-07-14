@@ -13,7 +13,18 @@ if(isset($_SESSION["viewUser"])){
 	unset($_SESSION["viewUser"]);
 }
 
-$_SESSION['message'] = "NOTE : Username cannot be changed !";
+$username = $_SESSION["username"];
+
+$tablename = "user";
+$imagePath = "display_pictures/default_dp.jpg";
+$stmt = $conn->prepare("SELECT `DisplayImagePath` FROM $tablename WHERE username = ?");
+$stmt->bind_param("s",$username);
+$stmt->execute();
+$stmt->bind_result($dpPath);
+while($stmt->fetch()){
+    $imagePath = $dpPath;
+}
+$stmt->close();
 
 ?>
 
@@ -50,7 +61,17 @@ $_SESSION['message'] = "NOTE : Username cannot be changed !";
 			<div class="row">
 			<!----------------------------------------------->
 		      <div class="col-md-3">
-		      	
+		        <div class="text-center">
+		          <img id="dp" src="<?= $imagePath ?>" onError="this.onerror=null;this.src='display_pictures/default_dp.jpg';" class="avatar img-circle" alt="avatar" style="width: 100px; height: 100px;">
+		          <h6>Upload a different photo...</h6>          
+		          <input id="fileToUpload" type="file" class="form-control" name="fileToUpload" accept="image/*">
+		        </div>
+		        <div class="row">
+			        <div class="col-md-2"></div>
+			        <div class="col-md-10" style="margin-top: 18px;">
+			       		<button class="btn btn-primary" onclick="changeDisplayPicture();">Update Profile Picture</button>
+			       	</div>
+			    </div>   		
 		      </div>
 		    <!----------------------------------------------->  
 		      <div class="col-md-9 personal-info">

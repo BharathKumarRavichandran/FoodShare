@@ -1,4 +1,4 @@
-function createSelfMessageBox(message,time){
+function createSelfMessageBox(message,time,dpPath){
 
 	var div = document.createElement("div");
 	var img = document.createElement("img");
@@ -21,12 +21,13 @@ function createSelfMessageBox(message,time){
 	span.setAttribute("class","time-left");
 
 	img.setAttribute("alt","Avatar");
-	img.setAttribute("src","assets/avatars/avatar-ninja-1.png");
+	img.setAttribute("src",dpPath);
+	img.setAttribute("onError","this.onerror=null;this.src='display_pictures/default_dp.jpg';");
 	img.setAttribute("style","width:100%;");
 
 }
 
-function createOppMessageBox(message,time){
+function createOppMessageBox(message,time,dpPath){
 
 	var div = document.createElement("div");
 	var img = document.createElement("img");
@@ -49,6 +50,8 @@ function createOppMessageBox(message,time){
 
 	img.setAttribute("alt","Avatar");
 	img.setAttribute("src","assets/avatars/avatar-ninja-2.png");
+	img.setAttribute("src",dpPath);
+	img.setAttribute("onError","this.onerror=null;this.src='display_pictures/default_dp.jpg';");
 	img.setAttribute("style","width:100%;");
 
 }

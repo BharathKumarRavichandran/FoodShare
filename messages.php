@@ -13,6 +13,19 @@ if(isset($_SESSION["viewUser"])){
 	unset($_SESSION["viewUser"]);
 }
 
+$username = $_SESSION["username"];
+
+$tablename = "user";
+$imagePath = "";
+$stmt = $conn->prepare("SELECT `DisplayImagePath` FROM $tablename WHERE username = ?");
+$stmt->bind_param("s",$username);
+$stmt->execute();
+$stmt->bind_result($dpPath);
+while($stmt->fetch()){
+    $imagePath = $dpPath;
+}
+$stmt->close();
+
 $_SESSION['message']="";
 
 ?>
@@ -86,6 +99,8 @@ $_SESSION['message']="";
 		    navbar.classList.remove("sticky");
 		 }
 	}
+
+	var dpPathSelf = "<?= $imagePath ?>";
 
 </script>
 <script src="js/config.js"></script>

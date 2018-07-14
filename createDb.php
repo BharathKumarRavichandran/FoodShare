@@ -13,6 +13,7 @@ $sql = "CREATE TABLE IF NOT EXISTS user(
 		password VARCHAR(256) NOT NULL,
 		Following VARCHAR(500) NOT NULL,
 		Followers VARCHAR(500) NOT NULL,
+		DisplayImagePath VARCHAR(2000) DEFAULT 'display_pictures/default_dp.jpg',
 		PRIMARY KEY (id,username)
 		)";
 $conn->query($sql);

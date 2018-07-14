@@ -20,6 +20,29 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 	if($_POST['purpose']=="retrieveSeenMessages"){
 
 		$username2 = $_POST['username2'];
+
+		$tablename = "user";
+		$imagePathSelf = "";
+		$stmt = $conn->prepare("SELECT `DisplayImagePath` FROM $tablename WHERE username = ?");
+		$stmt->bind_param("s",$username);
+		$stmt->execute();
+		$stmt->bind_result($dpPath);
+		while($stmt->fetch()){
+		    $imagePathSelf = $dpPath;
+		}
+		$stmt->close();
+
+		$tablename = "user";
+		$imagePathOther = "";
+		$stmt = $conn->prepare("SELECT `DisplayImagePath` FROM $tablename WHERE username = ?");
+		$stmt->bind_param("s",$username2);
+		$stmt->execute();
+		$stmt->bind_result($dpPath);
+		while($stmt->fetch()){
+		    $imagePathOther = $dpPath;
+		}
+		$stmt->close();
+
 		$tablename = "chats";
 		$status = "seen";
 
@@ -37,7 +60,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 		if($result->num_rows>0){
 			while($row = $result->fetch_assoc()){
 
-				$r = array('Username1'=>$row["Username1"],'Username2'=>$row["Username2"],'Message'=>$row["Message"],'MsgTimeStamp'=>$row["MsgTimeStamp"],'MessageTime'=>$row["MessageTime"],'Status'=>$row["Status"],'CurrentUser'=>$username);
+				$r = array('Username1'=>$row["Username1"],'Username2'=>$row["Username2"],'Message'=>$row["Message"],'MsgTimeStamp'=>$row["MsgTimeStamp"],'MessageTime'=>$row["MessageTime"],'Status'=>$row["Status"],'CurrentUser'=>$username,'imagePathSelf'=>$imagePathSelf,'imagePathOther'=>$imagePathOther);
 				array_push($chatData,$r);
 
 			}	
@@ -48,6 +71,29 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 	if($_POST['purpose']=="retrieveUnseenMessages"){
 
 		$username2 = $_POST['username2'];
+
+		$tablename = "user";
+		$imagePathSelf = "";
+		$stmt = $conn->prepare("SELECT `DisplayImagePath` FROM $tablename WHERE username = ?");
+		$stmt->bind_param("s",$username);
+		$stmt->execute();
+		$stmt->bind_result($dpPath);
+		while($stmt->fetch()){
+		    $imagePathSelf = $dpPath;
+		}
+		$stmt->close();
+
+		$tablename = "user";
+		$imagePathOther = "";
+		$stmt = $conn->prepare("SELECT `DisplayImagePath` FROM $tablename WHERE username = ?");
+		$stmt->bind_param("s",$username2);
+		$stmt->execute();
+		$stmt->bind_result($dpPath);
+		while($stmt->fetch()){
+		    $imagePathOther = $dpPath;
+		}
+		$stmt->close();
+		
 		$tablename = "chats";
 		$status = "unseen";
 
@@ -71,7 +117,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 					$conn->query($sql);
 				}	
 
-				$r = array('Username1'=>$row["Username1"],'Username2'=>$row["Username2"],'Message'=>$row["Message"],'MsgTimeStamp'=>$row["MsgTimeStamp"],'MessageTime'=>$row["MessageTime"],'Status'=>$row["Status"],'CurrentUser'=>$username);
+				$r = array('Username1'=>$row["Username1"],'Username2'=>$row["Username2"],'Message'=>$row["Message"],'MsgTimeStamp'=>$row["MsgTimeStamp"],'MessageTime'=>$row["MessageTime"],'Status'=>$row["Status"],'CurrentUser'=>$username,'imagePathSelf'=>$imagePathSelf,'imagePathOther'=>$imagePathOther);
 				array_push($chatData,$r);
 
 			}	

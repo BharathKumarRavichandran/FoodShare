@@ -13,7 +13,10 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $conn->query($sql);
 
     $_SESSION['message']="";
+    $imagePath = "display_pictures/default_dp.jpg";
     $allow=1;
+    $alreadyExists = false;
+    $uploadOk = 1;
 
     $url ='https://www.google.com/recaptcha/api/siteverify';
     include_once("config.php");//To include $privateKey variable which contains the secret key to Google reCaptacha's API
@@ -63,8 +66,77 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         $allow=0;
     }
 
+    function dp_uploaded(){
 
-    if($allow==1){
+        if(empty($_FILES["fileToUpload"]["name"])){
+            return false;
+        }
+        else{
+            return true;
+        }
+
+    }
+
+    $dpUploaded = dp_uploaded();
+
+    if($dpUploaded){
+
+        $target_dir = "display_pictures/";
+        $fileToUpload = $_FILES["fileToUpload"]["name"];
+        $target_file = $target_dir.basename($fileToUpload);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+        if(isset($_POST["submit"])){
+            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+            if($check !== false) {
+                $_SESSION["message"] = "File is an image - " . $check["mime"] . ".";
+                $uploadOk = 1;
+            }
+            else{
+                $_SESSION["message"] = "File is not an image.";
+                $uploadOk = 0;
+            }
+        }
+
+        if(file_exists($target_file)){
+            $alreadyExists = true;
+        }
+
+        if($_FILES["fileToUpload"]["size"] > 500000){
+            $_SESSION["message"] = "Sorry, your file is too large.";
+            $uploadOk = 0;
+        }
+
+        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"){
+            $_SESSION["message"] = "Sorry, only JPG, JPEG & PNG files are allowed.";
+            $uploadOk = 0;
+        }
+
+        if ($uploadOk == 0){
+            $_SESSION["message"] = "Sorry, your file was not uploaded.";
+        } 
+
+        else{
+            if(!$alreadyExists){
+                if(move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)){
+                    $_SESSION["message"] =  "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+                    $imagePath = $conn->real_escape_string($target_dir.$_FILES['fileToUpload']['name'].' ');
+                }
+                else{
+                    $_SESSION["message"] = "Sorry, there was an error uploading your file.";
+                }
+            }
+            else{
+                $_SESSION["message"] =  "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+                $imagePath = $conn->real_escape_string($target_dir.$_FILES['fileToUpload']['name'].' ');
+                $_SESSION["message"] = $imagePath;
+            } 
+        }
+
+    }
+
+    if(($allow==1)&&($uploadOk==1)){
 
     	//if two passwords are equal to each other
     	if($_POST["password"]==$_POST["confirmpassword"]){
@@ -81,11 +153,11 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             include("createDataTable.php");
 
             //insert user data into database
-            $stmt = $conn->prepare("INSERT INTO $tablename (username,email,password) "."VALUES (?,?,?)");
+            $stmt = $conn->prepare("INSERT INTO $tablename (username,email,password,DisplayImagePath) VALUES(?,?,?,?)");
             if(!$stmt){
                 echo "Error preparing statement ".htmlspecialchars($conn->error);
             }
-            $stmt->bind_param("sss",$username,$email,$password);
+            $stmt->bind_param("ssss",$username,$email,$password,$imagePath);
             if($stmt->execute() === true){    
                 $_SESSION['message'] = "Registration succesful! Added $username to the database!";
                 header("location: home.php");  
@@ -134,14 +206,18 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             <div class="col-md-4"></div>
             <div class="col-md-4">
                 <div class="text-center">
-                    <form action="register.php" method="post" autocomplete="off">
+                    <form action="register.php" method="post" enctype="multipart/form-data" autocomplete="off">
                         <div id="errMsg"><?= $_SESSION['message'] ?><span id="errMsg1"></span></div>
-                            <div class="form-group"><input id="usernameIn" class="form-control" type="text" placeholder="Username" name="username" onkeyup="usernameAvailabilty(this.value);" onblur="usernameFocusOut();" required /></div>
-                            <div class="form-group"><input id="emailIn" class="form-control" type="email" placeholder="Email" name="email" required /></div>
-                            <div class="form-group"><input class="passIn form-control" type="password" placeholder="Password" name="password" required /></div>
-                            <div class="form-group"><input class="passIn form-control" type="password" placeholder="Confirm Password" name="confirmpassword" required /></div>
-                            <div class="reCaptchaClass"><div class="g-recaptcha" data-sitekey="Your-Public-Key"></div></div>
-                            <div class="form-group"><input id="submitIn" class="form-control btn btn-custom" type="submit" value="Register" name="register"/></div>
+                        <div class="form-group"><input id="usernameIn" class="form-control" type="text" placeholder="Username" name="username" onkeyup="usernameAvailabilty(this.value);" onblur="usernameFocusOut();" required /></div>
+                        <div class="form-group"><input id="emailIn" class="form-control" type="email" placeholder="Email" name="email" required /></div>
+                        <div class="form-group"><input class="passIn form-control" type="password" placeholder="Password" name="password" required /></div>
+                        <div class="form-group"><input class="passIn form-control" type="password" placeholder="Confirm Password" name="confirmpassword" required /></div>
+                        <div class="form-group">
+                            <label class="control-label" for="fileToUpload">Upload Profile Picture (optional)</label>
+                            <input id="fileToUpload" class="form-control" type="file" class="form-control" name="fileToUpload" accept="image/*">
+                        </div>
+                        <div class="reCaptchaClass"><div class="g-recaptcha" data-sitekey="Your-Public-Key"></div></div>
+                        <div class="form-group"><input id="submitIn" class="form-control btn btn-custom" type="submit" value="Register" name="register"/></div>
                     </form>
                 </div>
             </div>

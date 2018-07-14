@@ -24,11 +24,6 @@ li{
  	overflow: auto; 
 }
 
-.btn-brown{
-	background: #645045;
-	color: white;
-}
-
 #selectId{
 	box-shadow: none;
 }
@@ -63,14 +58,16 @@ li{
 	font-size: 80px;
 }
 
+#dp{
+	width: 150px;
+	height: 150px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
 .recentText{
 	font-size: 40px;
 	text-align: center;
 	margin-top: 12vh;
 	margin-bottom: 6vh;
-}
-
-.btn-brown{
-	background: #645045;
-	color: white;
 }

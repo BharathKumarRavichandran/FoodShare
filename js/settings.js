@@ -41,6 +41,36 @@ function saveChanges(){
 
 }
 
+function changeDisplayPicture(){
+
+	var file = document.getElementById("fileToUpload").files[0];
+	var formData = new FormData();
+	formData.append('fileToUpload',file);
+
+	$.ajax({
+		url:'changeDP.php',
+		data:formData,
+		processData:false,
+		contentType:false,
+		type:'POST',
+		success:function(msg){
+			if((imgData=JSON.parse(msg))&&(imgData.ErrorMessage)){
+				document.getElementById("alertId").setAttribute("class","alert alert-dismissable alert-success");
+				document.getElementById("message").innerHTML = "Profile picture updated successfully!";
+				document.getElementById("alertId").setAttribute("style","display:block;");	
+				document.getElementById("dp").setAttribute("src",decodeURIComponent(imgData.ImagePath));
+			}
+			else{
+				document.getElementById("alertId").setAttribute("class","alert alert-dismissable alert-danger");
+				document.getElementById("message").innerHTML = msg;
+				document.getElementById("alertId").setAttribute("style","display:block;");		
+			}
+			document.getElementById("fileToUpload").value = "";
+		}
+	});
+
+}
+
 function deleteAccount(){
 
 	var password = document.getElementById("password").value;

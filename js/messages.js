@@ -59,7 +59,7 @@ function userChatInit(){
 	    	else{
 	    		var currentUser = userData[0].currentUser;
 	    		for(var g=0;g<userData.length;g++){
-	    			userChatLink(cards,userData[g].Username);
+	    			userChatLink(cards,userData[g].Username,userData[g].imagePathOther);
 	    			cards++;
 	    		}
 	    	}
@@ -110,7 +110,7 @@ function searchUserChatSuggestions(){
 	    	else{
 	    		var currentUser = userData[0].currentUser;
 	    		for(var g=0;g<userData.length;g++){
-	    			userChatLink(cards,userData[g].Username);
+	    			userChatLink(cards,userData[g].Username,userData[g].imagePathOther);
 	    			cards++;
 	    		}
 	    	}
@@ -149,7 +149,7 @@ function searchUserChat(){
 	    	else{
 	    		var currentUser = userData[0].currentUser;
 	    		for(var g=0;g<userData.length;g++){
-	    			userChatLink(cards,userData[g].Username);
+	    			userChatLink(cards,userData[g].Username,userData[g].imagePathOther);
 	    			cards++;
 	    		}
 	    	}
@@ -163,7 +163,7 @@ function searchUserChat(){
 
 }
 
-function userChatLink(cards,username){
+function userChatLink(cards,username,dpPath){
 
 	var div = document.createElement("div");
 	var img = document.createElement("img");
@@ -185,7 +185,8 @@ function userChatLink(cards,username){
 
 	div.setAttribute("onclick","userChatLinkClick(this);");
 	img.setAttribute("alt","Avatar");
-	img.setAttribute("src","assets/avatars/avatar-ninja-2.png");
+	img.setAttribute("src",dpPath);
+	img.setAttribute("onError","this.onerror=null;this.src='display_pictures/default_dp.jpg';");
 
 }
 
@@ -194,7 +195,7 @@ function sendMessage(){
 	var message = document.getElementById("chatInput").value;
 	var date = new Date();
 	var time = formatAMPM(date);
-	createSelfMessageBox(message,time);
+	createSelfMessageBox(message,time,dpPathSelf);
 	
 	chatboxScrollCheck();
 	saveMessage(username2,message,time);
@@ -265,10 +266,10 @@ function userChatLinkClick(y){
 				var currentUser = chatData[0].CurrentUser.trim();
 				for(var t=0;t<chatData.length;t++){
 					if(currentUser==chatData[t].Username1.trim()){
-						createSelfMessageBox(chatData[t].Message,chatData[t].MessageTime);
+						createSelfMessageBox(chatData[t].Message,chatData[t].MessageTime,chatData[t].imagePathSelf);
 					}
 					else{
-						createOppMessageBox(chatData[t].Message,chatData[t].MessageTime);
+						createOppMessageBox(chatData[t].Message,chatData[t].MessageTime,chatData[t].imagePathOther);
 					}
 				}
 				loadUnseenMessages();
@@ -311,10 +312,10 @@ function loadUnseenMessages(){
 				var currentUser = chatData[0].CurrentUser.trim();
 				for(var t=0;t<chatData.length;t++){
 					if(currentUser==chatData[t].Username1.trim()){
-						createSelfMessageBox(chatData[t].Message,chatData[t].MessageTime);
+						createSelfMessageBox(chatData[t].Message,chatData[t].MessageTime,chatData[t].imagePathSelf);
 					}
 					else{
-						createOppMessageBox(chatData[t].Message,chatData[t].MessageTime);
+						createOppMessageBox(chatData[t].Message,chatData[t].MessageTime,chatData[t].imagePathOther);
 						newMessageAudio.play();
 					}
 				}

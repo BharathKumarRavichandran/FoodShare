@@ -18,6 +18,16 @@ $username = $_SESSION['username'];
 $viewUser = $_SESSION['viewUser'];
 $tablename = "user";
 
+$imagePath = "display_pictures/default_dp.jpg";
+$stmt = $conn->prepare("SELECT `DisplayImagePath` FROM $tablename WHERE username = ?");
+$stmt->bind_param("s",$username);
+$stmt->execute();
+$stmt->bind_result($dpPath);
+while($stmt->fetch()){
+    $imagePath = $dpPath;
+}
+$stmt->close();
+
 $sql = "USE FoodShare;";
 $conn->query($sql);
 
@@ -95,6 +105,9 @@ if(!$stmt){
 	</div>
 	<div>
 		<div id="viewUser" class="userDispBig"><?= $viewUser ?></div>
+		<div style="text-align: center;">
+			<img id="dp" src="<?= $imagePath ?>" onError="this.onerror=null;this.src='display_pictures/default_dp.jpg';" class="avatar img-circle" alt="avatar">
+		</div>
 		<div id="btnRegion" style="text-align: center;"><button id="followBtn" class="userBtn btn btn-custom" onclick="followBtnClick(this)"><?= $followValue ?></button></div>
 		<div class="recentText">User's Recent Listings</div>
 		<div id="listingRegion"></div>
