@@ -6,7 +6,7 @@ This project uses PHP, Javascript, HTML, CSS, AJAX requests, Google Maps API and
 ## Features 
 
 * App with secure login and sign up options.
-* Sign up process with real time indication of usernames availability and a Captcha.
+* Sign up process with real time indication of usernames availability, profile picture upload and a Captcha.
 * Users can add type, title, description, image, approximate address(text/Google Maps), pickup time of the listings.
 * Users can add listings to their My Listings page, and can edit, unlist, delete the listings listed by them.
 * Users can refine listing results by listing type, distance and more.
@@ -15,7 +15,7 @@ This project uses PHP, Javascript, HTML, CSS, AJAX requests, Google Maps API and
 * Messaging Feature. Users can message/chat with people who they are following or who are following them.
 * Asynchronous Instant Chatting feature. Users can chat with other users instantly (where the user on the other end can receive the messages without refreshing the page).
 * Users can view the profile page and recent listings of other users.
-* Users can change their email and password.
+* Users can update their profile picture, email and password.
 * Users can delete their account and all the information associated with their account.
 
 ----
