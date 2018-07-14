@@ -235,7 +235,7 @@ function followDataDisplay(y){
 	    if(this.readyState==4&&this.status==200){
 	    	cards=0;
 	    	userData = JSON.parse(this.responseText);
-	    	if((userData.length==0)||(userData.length==1&&userData[0].currentUser==userData[0].Username)){
+	    	if((userData.length==0)){
 	    		noUsersDisplay();
 	    	}
 	    	else{
@@ -246,7 +246,7 @@ function followDataDisplay(y){
 	    				for(var d=0;d<array.length-1;d++){
 	    					createUserBox(cards,array[d],"Following");
 	    					cards++;
-	    				}		
+	    				}
 	    			}
 	    			else if(clickText=="Followers"){
 	    				var array = userData[g].Followers.split(",");
@@ -262,6 +262,9 @@ function followDataDisplay(y){
 	    					cards++;
 	    				}		
 	    			}
+	    		}
+	    		if(!listingRegion.firstChild){
+	    			noUsersDisplay();
 	    		}
 	    	}
 	   	}
