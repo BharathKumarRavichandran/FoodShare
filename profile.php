@@ -75,10 +75,10 @@ if(isset($_SESSION["viewUser"])){
 				<div id="map"></div>
 				<div class="form-group"><button id="saveLocationId" onclick="saveLocation();">Save Location</button></div>
 				<div class="form-group"><input id="timeInputId" class="inputClass form-control" type="text" name="time" placeholder="Pick-up Times Eg. Monday evening"/></div>	
-				<div class="expiryClass" style="margin-top: 10px; margin-left: 23%;">Expiry Date: <input id="expiryDateId" type="date" name="expiryDate"></div>
+				<div class="expiryClass" style="margin-top: 10px; margin-left: 30%;">Expiry Date: <input id="expiryDateId" type="date" name="expiryDate"></div>
 				<div class="fileUpload row" style="margin-top: 15px;">
-					<div class="col-md-2"></div>
-					<div class="col-md-5">
+					<div class="col-md-3"></div>
+					<div class="col-md-4">
 						<input id="fileToUpload" type="file" name="fileToUpload" accept="image/*">
 					</div>
 					<div class="col-md-5">
@@ -86,7 +86,7 @@ if(isset($_SESSION["viewUser"])){
 					</div>
 				</div>	
 				<div><?= $_SESSION['message'] ?></div>
-				<div class="form-group"><input id="submitInputId" class="inputClass btn btn-custom" type="submit" name="submitList" value="Add" onclick="addListing();"></div>
+				<div class="form-group"><input id="submitInputId" class="inputClass btn btn-custom form-control" type="submit" name="submitList" value="Add" onclick="addListing();"></div>
 			</div>
 		</div>
 	</div>

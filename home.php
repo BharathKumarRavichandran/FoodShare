@@ -82,7 +82,7 @@ $_SESSION['message']="";
 						<option>All Listings</option>
 					</select>
 				</div>
-				<div class="form-group"><input id="submitInputId" class="inputClass btn btn-custom" type="submit" name="refineList" value="Refine" onclick="refineListings();"></div>
+				<div class="form-group"><input id="submitInputId" class="btn btn-custom form-control" type="submit" name="refineList" value="Refine" onclick="refineListings();"></div>
 			</div>
 		</div>
 	</div>
