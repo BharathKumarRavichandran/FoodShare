@@ -44,53 +44,63 @@ function imgUpload(){
 
 function addListing(){
 
-	var type = selectId.options[selectId.selectedIndex].text;
-	var title = document.getElementById("titleInputId").value;
-	var desc = document.getElementById("descInputId").value;
-	var time = document.getElementById("timeInputId").value;
-	var expiryDate = document.getElementById("expiryDateId").value;
-	var purpose = "addListing";
+	 if(document.getElementById("titleInputId").value!=""&&document.getElementById("timeInputId").value!=""){
 
-	var params =  "type="+type+"&title="+title+"&desc="+desc+"&address="+saveAddress+"&latitude="+saveLatitude+"&longitude="+saveLongitude+"&time="+time+"&expiryDate="+expiryDate+"&purpose="+purpose;
+	 	var title = document.getElementById("titleInputId").value;
+		var time = document.getElementById("timeInputId").value;
+	 	var type = selectId.options[selectId.selectedIndex].text;
+		var desc = document.getElementById("descInputId").value;
+		var expiryDate = document.getElementById("expiryDateId").value;
+		var purpose = "addListing";
 
-	var file = document.getElementById("fileToUpload").files[0];
-	var formData = new FormData();
-	formData.append('fileToUpload',file);
-	formData.append('type',type);
-	formData.append('title',title);
-	formData.append('desc',desc);
-	formData.append('address',saveAddress);
-	formData.append('latitude',saveLatitude);
-	formData.append('longitude',saveLongitude);
-	formData.append('time',time);
-	formData.append('expiryDate',expiryDate);
-	formData.append('purpose',purpose);
+		var params =  "type="+type+"&title="+title+"&desc="+desc+"&address="+saveAddress+"&latitude="+saveLatitude+"&longitude="+saveLongitude+"&time="+time+"&expiryDate="+expiryDate+"&purpose="+purpose;
 
-	$.ajax({
-		url:'saveListing.php',
-		data:formData,
-		processData:false,
-		contentType:false,
-		type:'POST',
-		success:function(msg){
-			console.log(msg);
-			if(document.getElementById("myListingsId").classList.contains("active")){
-				document.getElementById("myListingsId").click();
+		var file = document.getElementById("fileToUpload").files[0];
+		var formData = new FormData();
+		formData.append('fileToUpload',file);
+		formData.append('type',type);
+		formData.append('title',title);
+		formData.append('desc',desc);
+		formData.append('address',saveAddress);
+		formData.append('latitude',saveLatitude);
+		formData.append('longitude',saveLongitude);
+		formData.append('time',time);
+		formData.append('expiryDate',expiryDate);
+		formData.append('purpose',purpose);
+
+		$.ajax({
+			url:'saveListing.php',
+			data:formData,
+			processData:false,
+			contentType:false,
+			type:'POST',
+			success:function(msg){
+				console.log(msg);
+				if(document.getElementById("myListingsId").classList.contains("active")){
+					document.getElementById("myListingsId").click();
+				}
 			}
-		}
-	});
+		});
 
-	document.getElementById("titleInputId").value = "";
-	document.getElementById("titleInputId").placeholder = "Title";
-	document.getElementById("descInputId").value = "";
-	document.getElementById("descInputId").placeholder = "Description";
-	document.getElementById("timeInputId").value = "";
-	document.getElementById("locationInputId").value = "";
-	document.getElementById("locationInputId").placeholder = "Add Pick-up Address here or Enter using map";
-	document.getElementById("timeInputId").placeholder = "Pick-up Times Eg. Monday evening";
-	document.getElementById("expiryDateId").value = new Date().toDateInputValue();
-	modal.style.display = "none";
+		document.getElementById("titleInputId").value = "";
+		document.getElementById("titleInputId").placeholder = "Title";
+		document.getElementById("descInputId").value = "";
+		document.getElementById("descInputId").placeholder = "Description";
+		document.getElementById("timeInputId").value = "";
+		document.getElementById("locationInputId").value = "";
+		document.getElementById("locationInputId").placeholder = "Add Pick-up Address here or Enter using map";
+		document.getElementById("timeInputId").placeholder = "Pick-up Times Eg. Monday evening";
+		document.getElementById("expiryDateId").value = new Date().toDateInputValue();
+		modal.style.display = "none";
 
+	}
+
+	else{
+
+		alert("Title, Address and PickupTimes are mandatory fields!");
+
+	}
+	
 }
 
 function myListings(){
