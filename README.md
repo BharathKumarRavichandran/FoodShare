@@ -81,5 +81,11 @@ Paste this public key in the 'data-sitekey' attribute,replacing "Your-public-key
 * [AJAX](https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX)
 * [HTML](https://www.w3.org/html/)
 * [CSS](https://www.w3.org/Style/CSS/)
+* [Bootstrap](http://getbootstrap.com/)
+* [jQuery](https://jquery.com/)
 * [Google Maps API](https://cloud.google.com/maps-platform/)
 * [reCaptcha API](https://www.google.com/recaptcha/)
+
+## Icon Packages
+
+* [Font Awesome](https://fontawesome.com/)
