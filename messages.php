@@ -66,7 +66,7 @@ $_SESSION['message']="";
 	  	<div id="userChatSelect"></div>
 	</div>
 	<div id="chatRegion"></div>
-	<input id="chatInput" class="chatInput" type="text" name="send" placeholder="Type a message">
+	<input id="chatInput" class="chatInput form-control" type="text" name="send" placeholder="Type a message">
 
 <script type="text/javascript">
 
