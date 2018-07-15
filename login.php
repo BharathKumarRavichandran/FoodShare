@@ -64,6 +64,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 </head>
 <body>
 	<a onclick="#" style="text-decoration: none; color: black;"><h1 class="title">FoodShare</h1></a>
+	<div class="tagline">You do not need to donate <img id="taglineImg" src="assets/Money_Bag.png" alt="money" /> to feed millions of people. Your actions can.</div>
     <h2 id="loginTitle">Login</h2>
     <div class="container">
         <div class="row">
