@@ -71,7 +71,11 @@ if(isset($_SESSION["viewUser"])){
 				<div class="form-group"><input id="titleInputId" class="inputClass form-control" type="text" name="title" placeholder="Title"/></div>	
 				<div class="form-group"><input id="descInputId" class="inputClass form-control" type="text" name="description" placeholder="Description"/></div>	
 				<div class="form-group"><input id="locationInputId" class="inputClass form-control" type="text" name="location" placeholder="Add Pick-up Address here or Enter using map"/></div>
-				<input id="pac-input" class="controls" type="text" name="location" placeholder="Locate by place"/>
+				<div class="pac-card" id="pac-card">
+					<div class="pac-container">
+						<input id="pac-input" class="controls" type="text" name="location" placeholder="Locate by place"/>
+					</div>
+				</div>	
 				<div id="map"></div>
 				<div class="form-group"><button id="saveLocationId" onclick="saveLocation();">Save Location</button></div>
 				<div class="form-group"><input id="timeInputId" class="inputClass form-control" type="text" name="time" placeholder="Pick-up Times Eg. Monday evening"/></div>	

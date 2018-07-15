@@ -6,32 +6,43 @@ var saveLatitude;
 var saveLongitude;
 var saveAddress;
 
-
 var markers = new Array();
+
+document.getElementById("locationInputId").addEventListener("keyup",function(event){
+
+	if(event.keyCode==13){//enter keycode
+		saveLocation();
+	}
+
+},false);
 
 function initAutocomplete() {
   var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -33.8688, lng: 151.2195},
+    center: {lat: 10.7589, lng: 78.8132},//NIT Trichy Co-ordinates
     zoom: 13,
     mapTypeId: 'roadmap'
   });
 
-  google.maps.event.addListener(map, 'click', function( event ){
+  google.maps.event.addListener(map, 'click', function(event){
     console.log( "Latitude: "+event.latLng.lat()+" "+", longitude: "+event.latLng.lng() ); 
     markerLat = event.latLng.lat();
     markerLng = event.latLng.lng();
 
+    //Clearing all old markers 
     markers.forEach(function(marker){
       marker.setMap(null);
     });
     markers = [];
 
+    //Adding current new marker
     var myLatlng = new google.maps.LatLng(event.latLng.lat(),event.latLng.lng() );
     markers.push(new google.maps.Marker({
         position: myLatlng,
         map: map,
-        title: 'Hello World!'
+        title: 'Your added address!'
     }));
+
+    saveLocation();//Saving address,lat,lng of current marker location
   });
 
   // Create the search box and link it to the UI element.
@@ -40,36 +51,35 @@ function initAutocomplete() {
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
   // Bias the SearchBox results towards current map's viewport.
-  map.addListener('bounds_changed', function() {
+  map.addListener('bounds_changed', function(){//If map viewport changes, bound also changes, so biasing search results
     searchBox.setBounds(map.getBounds());
   });
 
-  var markers = [];
-  // Listen for the event fired when the user selects a prediction and retrieve
-  // more details for that place.
-  searchBox.addListener('places_changed', function() {
+  // Listen for the event fired when the user selects a prediction and retrieve more details for that place.
+  searchBox.addListener('places_changed', function(){//SearchBox places selection event
     var places = searchBox.getPlaces();
 
-    if (places.length == 0) {
+    if(places.length == 0){
       return;
     }
 
     // For each place, get the icon, name and location.
     var bounds = new google.maps.LatLngBounds();
-    places.forEach(function(place) {
-      if (!place.geometry) {
+    places.forEach(function(place){
+      if (!place.geometry){
         console.log("Returned place contains no geometry");
         return;
       }
-      var icon = {
+
+      var icon = { //Creating icon for each places returned
         url: place.icon,
         size: new google.maps.Size(71, 71),
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(17, 34),
+        origin: new google.maps.Point(0, 0),//setting the origin prop of icon
+        anchor: new google.maps.Point(17, 34),//setting where to display icon-image wrt to marker's bottom anchor point
         scaledSize: new google.maps.Size(25, 25)
       };
 
-      // Create a marker for each place.
+      // Creating a marker for each place returned in the searchBox.
       markers.push(new google.maps.Marker({
         map: map,
         icon: icon,
@@ -77,14 +87,16 @@ function initAutocomplete() {
         position: place.geometry.location
       }));
 
-      if (place.geometry.viewport) {
+      if(place.geometry.viewport){
         // Only geocodes have viewport.
-        bounds.union(place.geometry.viewport);
-      } else {
-        bounds.extend(place.geometry.location);
+        bounds.union(place.geometry.viewport); //extend takes "other" object(LatLngBounds|LatLngBoundsLiteral) as its parameter
       }
+      else{
+        bounds.extend(place.geometry.location); //extend takes "point" object as its parameter
+      }
+
     });
-    map.fitBounds(bounds);
+    map.fitBounds(bounds);//Adjusting the map and changing to entered address to fit the bound changes
   });
 }
 
@@ -94,6 +106,8 @@ function saveLocation(){
   
   if(saveAddress!=""){
     address_to_coordinates(saveAddress);
+    document.getElementById("pac-input").value = saveAddress;
+    document.getElementById("pac-input").trigger(jQuery.Event('keypress', { keycode: 13 }));
   }
   else{
     saveLatitude = markerLat;
@@ -109,7 +123,7 @@ function address_to_coordinates(address){
 
   var geocoder = new google.maps.Geocoder();
 
-  geocoder.geocode( { 'address': address}, function(results, status) {
+  geocoder.geocode({'address': address},function(results, status){
 
   if (status == google.maps.GeocoderStatus.OK) {
       saveLatitude = results[0].geometry.location.lat();
@@ -125,7 +139,8 @@ function coordinates_to_address(lat,lng){
     var latlng = new google.maps.LatLng(lat,lng);
     var geocoder = new google.maps.Geocoder();
 
-    geocoder.geocode({'latLng': latlng}, function(results, status) {
+    geocoder.geocode({'latLng': latlng}, function(results,status){
+
         if(status == google.maps.GeocoderStatus.OK) {
             if(results[0]){
                 var address = (results[0].formatted_address);
@@ -134,16 +149,18 @@ function coordinates_to_address(lat,lng){
                 return address;
             }
             else{
-                alert('No results found');
+            	saveAddress = "Address error, delete and re-add listing";
+                console.log('No results found');
+                return saveAddress;
             }
         }
         else{
             var error = {
                 'ZERO_RESULTS': 'National Institute of Technology, Tiruchirappalli'
             }
-
-            // alert('Geocoder failed due to: '+status);
+            saveAddress = "Address error, delete and re-add listing";
             console.log(error[status]);
+            return saveAddress;
         }
     });
 }
