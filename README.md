@@ -13,7 +13,8 @@ This project uses PHP, Javascript, HTML, CSS, AJAX requests, Google Maps API and
 * A user’s profile page have the following - Add Listing, My listings, Unlisted listings, User following and followers data.
 * A search bar is provided in the home page where the user can search for other users.
 * Messaging Feature. Users can message/chat with people who they are following or who are following them.
-* Asynchronous Instant Chatting feature. Users can chat with other users instantly (where the user on the other end can receive the messages without refreshing the page).
+* *Asynchronous Instant Chatting feature.* Users can chat with other users instantly (where the user on the other end can receive the messages without refreshing the page).
+* A user-chat search bar with *Instant User-Chat Searching feature* is provided in the Messages page where the user can search for User-Chat data(user's chat data with followers and following people). Users will be able to see the search suggestions changing as the user types (without refreshing/ pressing the search button).
 * Users can view the profile page and recent listings of other users.
 * Users can update their profile picture, email and password.
 * Users can delete their account and all the information associated with their account.
