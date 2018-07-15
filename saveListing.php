@@ -105,9 +105,6 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 						$stmt->close();
 
 				    } 
-				    else {
-				        $_SESSION['message']="Sorry, there was an error uploading your file.";
-				    }
 				}
 			}
 			unset($_SESSION['upload']);
