@@ -1,5 +1,6 @@
 var i=0;
 var j=0;
+var loadUnseenSelfMessages = true;
 var username2;
 var chatRegion = document.getElementById("chatRegion");
 var searchUserValue = document.getElementById("searchUserValue");
@@ -312,13 +313,16 @@ function loadUnseenMessages(){
 				var currentUser = chatData[0].CurrentUser.trim();
 				for(var t=0;t<chatData.length;t++){
 					if(currentUser==chatData[t].Username1.trim()){
-						createSelfMessageBox(chatData[t].Message,chatData[t].MessageTime,chatData[t].imagePathSelf);
+						if(loadUnseenSelfMessages==true){
+							createSelfMessageBox(chatData[t].Message,chatData[t].MessageTime,chatData[t].imagePathSelf);
+						}
 					}
 					else{
 						createOppMessageBox(chatData[t].Message,chatData[t].MessageTime,chatData[t].imagePathOther);
 						newMessageAudio.play();
 					}
 				}
+				loadUnseenSelfMessages = false;
 				chatboxScrollCheck();
 			}
 		}
