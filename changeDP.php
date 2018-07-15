@@ -1,9 +1,14 @@
 <?php
 
+if(session_status()==PHP_SESSION_NONE){
+    session_start();
+}
+
 include_once("connect.php");
 
 $sql = "USE FoodShare;";
 $conn->query($sql);
+$username = $_SESSION["username"];
 
 if($_SERVER['REQUEST_METHOD']=="POST"){
 
@@ -56,11 +61,11 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 	        $imagePath = $conn->real_escape_string($target_dir.$_FILES['fileToUpload']['name']);
 
 	        $tablename = "user";
-        	$stmt = $conn->prepare("UPDATE $tablename SET `DisplayImagePath`=? ; ");
+        	$stmt = $conn->prepare("UPDATE $tablename SET `DisplayImagePath`=? WHERE username=?; ");
 			if(!$stmt){
 				echo "Error preparing statement ".htmlspecialchars($conn->error);
 			}
-			$stmt->bind_param("s",$imagePath);
+			$stmt->bind_param("ss",$imagePath,$username);
 			if($stmt->execute() === true){
 				$errMessage = false;
 			}
