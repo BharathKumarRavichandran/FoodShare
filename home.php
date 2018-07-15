@@ -59,7 +59,7 @@ $_SESSION['message']="";
 		<a id="refineId" class="sidenavlinks" onclick="openRefineListingModal()">Refine Listings</a>
 		<a class="sidenavlinks" onclick="logout();">Logout</a>
 	</div>
-	<div class="modal" id="modalId"> 
+	<div class="modal" id="modalId">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h2 style="text-align: center; font-size: 1.8em; margin-left: 30%; padding: 5px;">Refine results by:</h2>
@@ -72,7 +72,11 @@ $_SESSION['message']="";
 						<option>Wanted</option>
 					</select>
 				</div>
-				<input id="pac-input" class="controls" type="text" name="location" placeholder="Locate by place"/>
+				<div class="pac-card" id="pac-card">
+					<div class="pac-container">
+						<input id="pac-input" class="controls" type="text" name="location" placeholder="Locate by place"/>
+					</div>
+				</div>
 				<div id="map"></div>
 				<div class="distanceRefine"><span>Show results within : </span>
 					<select id="modalSelectId2">

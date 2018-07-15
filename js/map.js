@@ -8,14 +8,6 @@ var saveAddress;
 
 var markers = new Array();
 
-document.getElementById("locationInputId").addEventListener("keyup",function(event){
-
-	if(event.keyCode==13){//enter keycode
-		saveLocation();
-	}
-
-},false);
-
 function initAutocomplete() {
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 10.7589, lng: 78.8132},//NIT Trichy Co-ordinates
@@ -42,7 +34,10 @@ function initAutocomplete() {
         title: 'Your added address!'
     }));
 
-    saveLocation();//Saving address,lat,lng of current marker location
+    if(document.getElementById("locationInputId")){
+    	saveLocation();//Saving address,lat,lng of current marker location	
+    }
+    
   });
 
   // Create the search box and link it to the UI element.
@@ -102,12 +97,15 @@ function initAutocomplete() {
 
 function saveLocation(){
 
-  saveAddress = document.getElementById("locationInputId").value;
+	if(document.getElementById("locationInputId")){
+		saveAddress = document.getElementById("locationInputId").value;
+	}
+
+	console.log(saveAddress);
   
   if(saveAddress!=""){
     address_to_coordinates(saveAddress);
     document.getElementById("pac-input").value = saveAddress;
-    document.getElementById("pac-input").trigger(jQuery.Event('keypress', { keycode: 13 }));
   }
   else{
     saveLatitude = markerLat;
@@ -146,6 +144,9 @@ function coordinates_to_address(lat,lng){
                 var address = (results[0].formatted_address);
                 saveAddress = address;
                 console.log(saveAddress);
+                if(document.getElementById("locationInputId")){
+                	document.getElementById("locationInputId").placeholder = saveAddress;
+                }
                 return address;
             }
             else{

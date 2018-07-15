@@ -137,6 +137,14 @@ if(isset($_SESSION["viewUser"])){
 	    }
 	}	
 
+	document.getElementById("locationInputId").addEventListener("keyup",function(event){
+
+		if(event.keyCode==13){//enter keycode
+			saveLocation();
+		}
+
+	},false);
+
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLayRaJZWWbmSToJZd9UHgwp5QNVme5gw&libraries=places&callback=initAutocomplete" async defer></script>
 <script src="js/config.js"></script>
