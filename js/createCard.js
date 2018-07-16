@@ -1,4 +1,4 @@
-function createCard(cards,id,username,type,title,desc,location,pickupTime,expiryDate,creationTime,imgPath){
+function createCard(cards,id,username,type,title,desc,location,pickupTime,expiryDate,creationTime,imgPath,dpPath){
 
 	var li = document.createElement("li");
 	var titleDiv = document.createElement("div");
@@ -96,7 +96,7 @@ function createCard(cards,id,username,type,title,desc,location,pickupTime,expiry
 	calIcon.setAttribute("class","fa fa-calendar listing-card-icons");
 
 	chipDiv.setAttribute("onclick","viewProfileChipClick(this)");
-	chipImg.setAttribute("src","assets/avatars/avatar-ninja-2.png");
+	chipImg.setAttribute("src",dpPath);
 	chipImg.setAttribute("alt","Person");
 	chipImg.setAttribute("width","96");
 	chipImg.setAttribute("height","96");

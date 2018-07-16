@@ -23,6 +23,17 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 
 	if($_POST["purpose"]=="self"){
 
+		$tablename2 = "user";
+		$imagePathSelf = "";
+		$stmt = $conn->prepare("SELECT `DisplayImagePath` FROM $tablename2 WHERE username = ?");
+		$stmt->bind_param("s",$username);
+		$stmt->execute();
+		$stmt->bind_result($dpPath);
+		while($stmt->fetch()){
+		    $imagePathSelf = $dpPath;
+		}
+		$stmt->close();
+
 		$stmt = $conn->prepare("SELECT * FROM $tablename WHERE Username = ?");
 		if(!$stmt){
 			echo "Error preparing statement ".htmlspecialchars($conn->error);
@@ -37,7 +48,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 		if($result->num_rows>0){
 			while($row = $result->fetch_assoc()){
 
-				$r = array('listingId'=>$row["id"],'Username'=>$row["Username"],'Type'=>$row["Type"],'Title'=>$row["Title"],'Description'=>$row["Description"],'Address'=>$row["Address"],'Latitude'=>$row["Latitude"],'Longitude'=>$row["Longitude"],'PickupTime'=>$row["PickupTime"],'ExpiryDate'=>$row["ExpiryDate"],'CreationTime'=>$row["CreationTime"],'Listed'=>$row["Listed"],'ImgPath'=>$row['ImgPath']);
+				$r = array('listingId'=>$row["id"],'Username'=>$row["Username"],'Type'=>$row["Type"],'Title'=>$row["Title"],'Description'=>$row["Description"],'Address'=>$row["Address"],'Latitude'=>$row["Latitude"],'Longitude'=>$row["Longitude"],'PickupTime'=>$row["PickupTime"],'ExpiryDate'=>$row["ExpiryDate"],'CreationTime'=>$row["CreationTime"],'Listed'=>$row["Listed"],'ImgPath'=>$row['ImgPath'],'dpPath'=>$imagePathSelf);
 				array_push($listingsData,$r);	
 			}
 		}	
@@ -58,6 +69,17 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 		$result = $stmt->get_result();
 		$stmt->close();
 
+		$tablename2 = "user";
+		$imagePath = "";
+		$stmt = $conn->prepare("SELECT `DisplayImagePath` FROM $tablename2 WHERE username = ?");
+		$stmt->bind_param("s",$viewUser);
+		$stmt->execute();
+		$stmt->bind_result($dpPath);
+		while($stmt->fetch()){
+		    $imagePath = $dpPath;
+		}
+		$stmt->close();
+
 		$listingsData = array();
 
 		if($result->num_rows>0){
@@ -65,7 +87,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 
 				if($row["Listed"]=="yes"){
 
-					$r = array('listingId'=>$row["id"],'Username'=>$row["Username"],'Type'=>$row["Type"],'Title'=>$row["Title"],'Description'=>$row["Description"],'Address'=>$row["Address"],'Latitude'=>$row["Latitude"],'Longitude'=>$row["Longitude"],'PickupTime'=>$row["PickupTime"],'ExpiryDate'=>$row["ExpiryDate"],'CreationTime'=>$row["CreationTime"],'Listed'=>$row["Listed"],'ImgPath'=>$row['ImgPath']);
+					$r = array('listingId'=>$row["id"],'Username'=>$row["Username"],'Type'=>$row["Type"],'Title'=>$row["Title"],'Description'=>$row["Description"],'Address'=>$row["Address"],'Latitude'=>$row["Latitude"],'Longitude'=>$row["Longitude"],'PickupTime'=>$row["PickupTime"],'ExpiryDate'=>$row["ExpiryDate"],'CreationTime'=>$row["CreationTime"],'Listed'=>$row["Listed"],'ImgPath'=>$row['ImgPath'],'dpPath'=>$imagePath);
 					array_push($listingsData,$r);	
 
 				}
@@ -92,7 +114,18 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 
 				if($row["Listed"]=="yes"){
 
-					$r = array('listingId'=>$row["id"],'Username'=>$row["Username"],'Type'=>$row["Type"],'Title'=>$row["Title"],'Description'=>$row["Description"],'Address'=>$row["Address"],'Latitude'=>$row["Latitude"],'Longitude'=>$row["Longitude"],'PickupTime'=>$row["PickupTime"],'ExpiryDate'=>$row["ExpiryDate"],'CreationTime'=>$row["CreationTime"],'Listed'=>$row["Listed"],'ImgPath'=>$row['ImgPath']);
+					$tablename2 = "user";
+					$imagePath = "";
+					$stmt = $conn->prepare("SELECT `DisplayImagePath` FROM $tablename2 WHERE username = ?");
+					$stmt->bind_param("s",$row["Username"]);
+					$stmt->execute();
+					$stmt->bind_result($dpPath);
+					while($stmt->fetch()){
+					    $imagePath = $dpPath;
+					}
+					$stmt->close();
+
+					$r = array('listingId'=>$row["id"],'Username'=>$row["Username"],'Type'=>$row["Type"],'Title'=>$row["Title"],'Description'=>$row["Description"],'Address'=>$row["Address"],'Latitude'=>$row["Latitude"],'Longitude'=>$row["Longitude"],'PickupTime'=>$row["PickupTime"],'ExpiryDate'=>$row["ExpiryDate"],'CreationTime'=>$row["CreationTime"],'Listed'=>$row["Listed"],'ImgPath'=>$row['ImgPath'],'dpPath'=>$imagePath);
 					array_push($listingsData,$r);	
 
 				}

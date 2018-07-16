@@ -55,6 +55,7 @@ function changeDisplayPicture(){
 		contentType:false,
 		type:'POST',
 		success:function(msg){
+			console.log(msg);
 
 			try{
 				imgData = JSON.parse(msg);

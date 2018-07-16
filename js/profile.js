@@ -132,7 +132,7 @@ function myListings(){
 			cards = 0;
 			data = JSON.parse(this.responseText);
 			for(var u=0;u<data.length;u++){
-				createCard(cards,data[u].Listed,data[u].listingId,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime,data[u].ImgPath);
+				createCard(cards,data[u].Listed,data[u].listingId,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime,data[u].ImgPath,data[u].dpPath);
 				cards++;
 			}
 			if(!listingRegion.firstChild){
@@ -176,7 +176,7 @@ function unlistedListings(){
 			data = JSON.parse(this.responseText);
 			for(var u=0;u<data.length;u++){
 				if(data[u].Listed=="no"){
-					createCard(cards,data[u].Listed,data[u].listingId,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime,data[u].ImgPath);
+					createCard(cards,data[u].Listed,data[u].listingId,data[u].Username,data[u].Type,data[u].Title,data[u].Description,data[u].Address,data[u].PickupTime,data[u].ExpiryDate,data[u].CreationTime,data[u].ImgPath,data[u].dpPath);
 				}
 			}
 			if(!listingRegion.firstChild){
@@ -286,7 +286,7 @@ function followDataDisplay(y){
 
 }
 
-function createCard(cards,listed,id,username,type,title,desc,location,pickupTime,expiryDate,creationTime,imgPath){
+function createCard(cards,listed,id,username,type,title,desc,location,pickupTime,expiryDate,creationTime,imgPath,dpPath){
 
 	var li = document.createElement("li");
 	var titleDiv = document.createElement("div");
@@ -423,7 +423,7 @@ function createCard(cards,listed,id,username,type,title,desc,location,pickupTime
 	timeIcon.setAttribute("class","fa fa-clock-o listing-card-icons");
 	calIcon.setAttribute("class","fa fa-calendar listing-card-icons");
 
-	chipImg.setAttribute("src","assets/avatars/avatar-ninja-2.png");
+	chipImg.setAttribute("src",dpPath);
 	chipImg.setAttribute("alt","Person");
 	chipImg.setAttribute("width","96");
 	chipImg.setAttribute("height","96");
