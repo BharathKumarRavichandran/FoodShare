@@ -69,11 +69,6 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 				    $alreadyExists = true;
 				}
 
-				if ($_FILES["fileToUpload"]["size"] > 500000) {
-				    $_SESSION['message']="Sorry, your file is too large.";
-				    $uploadOk = 0;
-				}
-
 				if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
 				&& $imageFileType != "gif" ) {
 				    $_SESSION['message']="Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
@@ -93,7 +88,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 					    }
 					}
 				    else{
-				        $_SESSION['message']="The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+				        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
 				        $imagePath = $conn->real_escape_string('uploads/'.$_FILES['fileToUpload']['name'].' ');
 
 				        $stmt = $conn->prepare("INSERT INTO $tablename(Username,Type,Title,Description,Address,Latitude,Longitude,PickupTime,ExpiryDate,CreationTime,ImgPath) VALUES(?,?,?,?,?,?,?,?,?,?,?);");

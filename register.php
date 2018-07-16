@@ -103,11 +103,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             $alreadyExists = true;
         }
 
-        if($_FILES["fileToUpload"]["size"] > 500000){
-            $_SESSION["message"] = "Sorry, your file is too large.";
-            $uploadOk = 0;
-        }
-
         if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"){
             $_SESSION["message"] = "Sorry, only JPG, JPEG & PNG files are allowed.";
             $uploadOk = 0;
@@ -130,7 +125,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             else{
                 $_SESSION["message"] =  "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
                 $imagePath = $conn->real_escape_string($target_dir.$_FILES['fileToUpload']['name'].' ');
-                $_SESSION["message"] = $imagePath;
             } 
         }
 

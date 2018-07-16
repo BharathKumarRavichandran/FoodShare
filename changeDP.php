@@ -35,11 +35,6 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 	    $alreadyExists = true;
 	}
 
-	if ($_FILES["fileToUpload"]["size"] > 500000) {
-	    echo "Sorry, your file is too large.";
-	    $uploadOk = 0;
-	}
-
 	if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
 	    echo "Sorry, only JPG, JPEG & PNG files are allowed.";
 	    $uploadOk = 0;
