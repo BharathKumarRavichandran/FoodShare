@@ -20,7 +20,7 @@ $tablename = "user";
 
 $imagePath = "display_pictures/default_dp.jpg";
 $stmt = $conn->prepare("SELECT `DisplayImagePath` FROM $tablename WHERE username = ?");
-$stmt->bind_param("s",$username);
+$stmt->bind_param("s",$viewUser);
 $stmt->execute();
 $stmt->bind_result($dpPath);
 while($stmt->fetch()){
