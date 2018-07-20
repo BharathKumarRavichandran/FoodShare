@@ -60,7 +60,7 @@ $_SESSION['message']="";
 	</div>	
 	<div class="sidenav" id="sidenav">
 		<span class="search-container" style="padding: 15px;">
-	      	<input id="searchUserValue" type="text" placeholder="Search User" name="search" onkeyup="searchUserChatSuggestions();" />
+	      	<input id="searchUserValue" type="text" placeholder="Search User" name="search" />
 	      	<button id="searchChatButtonId" onclick="searchUserChat()"><i class="fa fa-search"></i></button>	
 	  	</span>
 	  	<div id="userChatSelect"></div>
@@ -76,7 +76,7 @@ $_SESSION['message']="";
 	    if (x.currentStyle)
 	        var y = x.currentStyle[styleProp];
 	    else if (window.getComputedStyle)
-	        var y = document.defaultView.getComputedStyle(x,null).getPropertyValue(styleProp);
+	        var y = document.defaultView.getComputedStyle(x,null).getPropertyValue(styleProp); //null for pesudo-element
 	    return y;
 	}
 
