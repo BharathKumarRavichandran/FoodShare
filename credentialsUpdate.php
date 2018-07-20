@@ -87,7 +87,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 			        $allow=0;
 				}
 			}
-		}	
+		}
 
 	    $email = $_POST['newEmail'];
 	    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
