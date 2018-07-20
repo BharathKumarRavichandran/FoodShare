@@ -189,6 +189,12 @@ function refineListings(){
 		listingRegion.removeChild(listingRegion.firstChild);
 	}
 
+	//Clearing all old markers 
+    markers.forEach(function(marker){
+      marker.setMap(null);
+    });
+    markers = [];
+
 	type = selectId1.options[selectId1.selectedIndex].text;
 	disConstraint = selectId2.options[selectId2.selectedIndex].text;
 
