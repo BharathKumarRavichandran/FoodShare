@@ -13,6 +13,9 @@ document.getElementById("searchUserValue").addEventListener("keyup",function(eve
 	if(event.keyCode==13){//enter keycode
 		searchUserChat();
 	}
+	else{
+		searchUserChatSuggestions();
+	}
 
 },false);
 
@@ -57,6 +60,7 @@ function userChatInit(){
 	    	if(userData.length==0){
 	    		noUserChatsDisplay();
 	    	}
+
 	    	else{
 	    		var currentUser = userData[0].currentUser;
 	    		for(var g=0;g<userData.length;g++){
@@ -111,6 +115,7 @@ function searchUserChatSuggestions(){
 	    	else{
 	    		var currentUser = userData[0].currentUser;
 	    		for(var g=0;g<userData.length;g++){
+	    			console.log("hey");
 	    			userChatLink(cards,userData[g].Username,userData[g].imagePathOther);
 	    			cards++;
 	    		}
@@ -325,6 +330,7 @@ function loadUnseenMessages(){
 				loadUnseenSelfMessages = false;
 				chatboxScrollCheck();
 			}
+			loadUnseenSelfMessages = false;
 		}
 	};
 	xmlhttp.open("POST",url,true);
@@ -343,14 +349,14 @@ function noUserChatsDisplay(){
 }
 
 function noChatMessagesDisplay(){
-	var div = document.createElement("div");
+	/*var div = document.createElement("div");
 	var divText = document.createTextNode("No chat messages to display!");
 	div.appendChild(divText);
 	chatRegion.appendChild(div);
 	div.setAttribute("id","noChatMessagesId");
-	div.setAttribute("class","no-chatmessages");	
+	div.setAttribute("class","no-chatmessages");*/
 }
 
 userChatInit();
 
-setInterval(loadUnseenMessages,2000);
+setInterval(loadUnseenMessages,1000);
