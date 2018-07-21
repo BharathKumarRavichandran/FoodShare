@@ -79,12 +79,12 @@ function initAutocomplete() {
         map: map,
         icon: icon,
         title: place.name,
-        position: place.geometry.location
+        position: place.geometry.location //gives (lat,lng) object
       }));
 
       if(place.geometry.viewport){
         // Only geocodes have viewport.
-        bounds.union(place.geometry.viewport); //extend takes "other" object(LatLngBounds|LatLngBoundsLiteral) as its parameter
+        bounds.union(place.geometry.viewport); //union takes "other" object(LatLngBounds|LatLngBoundsLiteral) as its parameter
       }
       else{
         bounds.extend(place.geometry.location); //extend takes "point" object as its parameter

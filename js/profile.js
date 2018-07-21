@@ -6,9 +6,9 @@ var modal = document.getElementById("modalId");
 var selectId = document.getElementById("modalSelectId");
 
 var xmlhttp;
-if (window.XMLHttpRequest) {
+if (window.XMLHttpRequest){
 	xmlhttp = new XMLHttpRequest();
-} 
+}
 else{
   	xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 }
